@@ -12,13 +12,13 @@
 </head>
 <body>
   <h1>Fetch Videos from Luu Myat Kyaw Channel</h1>
-  <p>Click below to fetch all videos (title, URL, publish date) and output as JSON.</p>
+  <p>Click below to fetch all videos (title, URL, publish date in milliseconds) and output as JSON.</p>
   <button id="fetchBtn">Fetch Videos</button>
   <textarea id="output" readonly placeholder="Output JSON will appear here..."></textarea>
 
   <script>
-    const API_KEY = "AIzaSyAXfHr1nh9ZhtgGb_tb8SsYfABcWZAinVc"; // Replace with your key
-    const CHANNEL_USERNAME = "@luumyatkyaw-myanmar"; // handle (we’ll convert it)
+    const API_KEY = "AIzaSyAXfHr1nh9ZhtgGb_tb8SsYfABcWZAinVc"; // Your key
+    const CHANNEL_USERNAME = "@luumyatkyaw-myanmar"; // handle
 
     const OUTPUT = document.getElementById("output");
     const FETCH_BTN = document.getElementById("fetchBtn");
@@ -49,10 +49,14 @@
 
         for (const item of data.items || []) {
           if (item.id.kind === "youtube#video") {
+            const published = item.snippet.publishedAt
+              ? new Date(item.snippet.publishedAt).getTime()
+              : null;
+
             videos.push({
               title: item.snippet.title,
               youtubeURL: "https://www.youtube.com/watch?v=" + item.id.videoId,
-              Date: item.snippet.publishedAt
+              Date: published
             });
           }
         }
