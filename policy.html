@@ -14,6 +14,7 @@
       overflow-x: hidden;
     }
 
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -21,40 +22,58 @@
       width: 100%;
       display: flex;
       align-items: center;
-      padding: 0.8rem 1rem;
+      justify-content: flex-start;
+      padding: 0.6rem 1rem;
       z-index: 10;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
     }
 
     .back-btn {
       color: #fff;
       font-size: 1.5rem;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease, color 0.25s ease;
     }
 
     .back-btn:hover {
       transform: translateX(-3px);
+      color: #00aaff;
     }
 
+    /* MAIN SECTION */
     main {
-      margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 4.5rem 1rem 2rem;
+      box-sizing: border-box;
+    }
+
+    .policy-wrapper {
+      max-width: 900px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.08);
+      background: #111;
     }
 
     .policy-img {
       width: 100%;
       height: auto;
       display: block;
-      max-height: 100vh;
-      object-fit: cover;
+      object-fit: contain;
+      border-radius: 12px;
       animation: fadeIn 0.8s ease;
     }
 
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: scale(1.02);
+        transform: scale(1.03);
       }
       to {
         opacity: 1;
@@ -62,12 +81,23 @@
       }
     }
 
-    @media (max-width: 480px) {
+    /* SMALL SCREEN OPTIMIZATION */
+    @media (max-width: 600px) {
       header {
-        padding: 0.6rem 0.8rem;
+        padding: 0.5rem 0.8rem;
       }
+
       .back-btn {
         font-size: 1.3rem;
+      }
+
+      main {
+        padding: 4rem 0.8rem 1.5rem;
+      }
+
+      .policy-wrapper {
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
       }
     }
   </style>
@@ -78,7 +108,9 @@
   </header>
 
   <main>
-    <img src="/assets/announcement_of_policy.jpg" alt="Policy Announcement" class="policy-img" />
+    <div class="policy-wrapper">
+      <img src="/assets/announcement_of_policy.jpg" alt="Policy Announcement" class="policy-img" />
+    </div>
   </main>
 
   <script>
