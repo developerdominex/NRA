@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LMK × Dominex Collaboration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: linear-gradient(180deg, #f7f8fa 0%, #eef1f5 100%);
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      z-index: 10;
+    }
+
+    .back-btn {
+      color: #333;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-3px);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .lmk-logo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .lmk-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .x-symbol {
+      font-size: 2rem;
+      color: #666;
+      margin: 0.5rem 0;
+      font-weight: 600;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .dominex-text {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #111;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideUp 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .lmk-logo {
+        width: 110px;
+        height: 110px;
+      }
+
+      .dominex-text {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <i class="fas fa-arrow-left back-btn" id="backBtn"></i>
+  </header>
+
+  <main>
+    <img src="/assets/lmk.jpg" alt="LMK Logo" class="lmk-logo" />
+    <div class="x-symbol">×</div>
+    <div class="dominex-text">Dominex</div>
+  </main>
+
+  <script>
+    document.getElementById('backBtn').addEventListener('click', () => {
+      window.location.href = 'home.html';
+    });
+  </script>
+</body>
+</html>
