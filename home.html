@@ -6,249 +6,250 @@
   <title>NRA News</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-  html {
-  overflow-x: hidden;
-}
+    * {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
 
-body {
-  margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  background: #f3f4f6;
-  color: #222;
-  overflow-y: auto;
-}
+    html, body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: #f3f4f6;
+      color: #222;
+      overflow-x: hidden !important;
+      scroll-behavior: smooth;
+    }
 
-/* HEADER - compact clean design */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 0.9rem;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.9rem;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-.menu-btn {
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: #333;
-  transition: transform 0.2s ease;
-}
+    .menu-btn {
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #333;
+      transition: transform 0.2s ease;
+    }
 
-.menu-btn:hover {
-  transform: scale(1.1);
-}
+    .menu-btn:hover {
+      transform: scale(1.1);
+    }
 
-.right-logo {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
+    .right-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
 
-.right-logo:hover {
-  transform: rotate(5deg) scale(1.05);
-}
+    .right-logo:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
 
-/* SIDEBAR + OVERLAY */
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(3px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 98;
-}
+    /* SIDEBAR + OVERLAY */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 98;
+    }
 
-.sidebar-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
+    .sidebar-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 250px;
-  height: 100vh;
-  background: #ffffff;
-  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.15);
-  padding: 1.8rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.3rem;
-  transition: left 0.3s ease;
-  z-index: 99; /* above header */
-}
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 250px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: 3px 0 12px rgba(0, 0, 0, 0.15);
+      padding: 1.8rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+      transition: left 0.3s ease;
+      z-index: 99;
+    }
 
-.sidebar.active {
-  left: 0;
-}
+    .sidebar.active {
+      left: 0;
+    }
 
-.sidebar a {
-  text-decoration: none;
-  color: #222;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-weight: 500;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
+    .sidebar a {
+      text-decoration: none;
+      color: #222;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
 
-.sidebar a:hover {
-  color: #007bff;
-  transform: translateX(6px);
-}
+    .sidebar a:hover {
+      color: #007bff;
+      transform: translateX(6px);
+    }
 
-.sidebar img {
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-  object-fit: cover;
-}
+    .sidebar img {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
 
-/* MAIN CONTENT */
-main {
-  max-width: 700px;
-  margin: 1.4rem auto;
-  padding: 0 1rem;
-}
+    /* MAIN CONTENT */
+    main {
+      max-width: 700px;
+      margin: 1.4rem auto;
+      padding: 0 1rem;
+    }
 
-.news-card {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  padding: 1.2rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+    .news-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-.news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
+    .news-card.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.news-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-}
+    .news-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
 
-.news-date {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 1rem;
-}
+    .news-date {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1rem;
+    }
 
-.news-img {
-  width: 100%;
-  border-radius: 0.8rem;
-  margin-bottom: 1rem;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
+    iframe, img {
+      display: block;
+      width: 100%;
+      border-radius: 0.8rem;
+      border: none;
+    }
 
-.news-img.loaded {
-  opacity: 1;
-}
+    .news-img {
+      width: 100%;
+      border-radius: 0.8rem;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
 
-iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-  border-radius: 0.8rem;
-  margin-bottom: 1rem;
-}
+    .news-img.loaded {
+      opacity: 1;
+    }
 
-/* PROFILE DIALOG */
-.profile-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  width: 90%;
-  max-width: 340px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  z-index: 100;
-}
+    /* PROFILE DIALOG */
+    .profile-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 340px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
 
-.profile-dialog.active {
-  opacity: 1;
-  pointer-events: all;
-  transform: translate(-50%, -50%) scale(1);
-}
+    .profile-dialog.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
-.profile-avatar {
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 1rem;
-}
+    .profile-avatar {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 1rem;
+    }
 
-.profile-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 0.3rem;
-}
+    .profile-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
 
-.profile-email {
-  font-size: 0.9rem;
-  color: #666;
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
+    .profile-email {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
 
-.back-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 50px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  width: 100%;
-}
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
 
-.back-btn:hover {
-  background: #005fcc;
-}
+    .back-btn:hover {
+      background: #005fcc;
+    }
 
-@media (max-width: 480px) {
-  .news-title {
-    font-size: 1.1rem;
-  }
+    @media (max-width: 480px) {
+      .news-title {
+        font-size: 1.1rem;
+      }
 
-  .sidebar {
-    width: 80%;
-  }
-}
-
-</style>
-
+      .sidebar {
+        width: 80%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -266,9 +267,7 @@ iframe {
     <a href="#" id="logoutLink" style="color:#e63946;"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </nav>
 
-  <main id="newsContainer">
-    <!-- News items will load dynamically -->
-  </main>
+  <main id="newsContainer"></main>
 
   <div class="profile-dialog" id="profileDialog">
     <img id="pAvatar" class="profile-avatar" alt="Profile Avatar" />
@@ -276,6 +275,7 @@ iframe {
     <div id="pEmail" class="profile-email"></div>
     <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i>&nbsp;Back</button>
   </div>
+
   <div class="profile-dialog" id="telegramDialog">
     <div style="text-align:center;">
       <i class="fab fa-telegram" style="font-size:2rem;color:#0088cc;margin-bottom:0.8rem;"></i>
@@ -295,153 +295,155 @@ iframe {
       </button>
     </div>
   </div>
- <script>
-  const menuBtn = document.getElementById('menuBtn');
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('overlay');
-  const profileLink = document.getElementById('profileLink');
-  const logoutLink = document.getElementById('logoutLink');
-  const profileDialog = document.getElementById('profileDialog');
-  const backBtn = document.getElementById('backBtn');
-  const newsContainer = document.getElementById('newsContainer');
-  const telegramLink = document.getElementById('telegramLink');
-  const telegramDialog = document.getElementById('telegramDialog');
-  const closeTelegramDialog = document.getElementById('closeTelegramDialog');
-  const copyTelegramBtn = document.getElementById('copyTelegramBtn');
-  const telegramLinkInput = document.getElementById('telegramLinkInput');
 
-  telegramLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-    telegramDialog.classList.add('active');
-  });
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const profileLink = document.getElementById('profileLink');
+    const logoutLink = document.getElementById('logoutLink');
+    const profileDialog = document.getElementById('profileDialog');
+    const backBtn = document.getElementById('backBtn');
+    const newsContainer = document.getElementById('newsContainer');
+    const telegramLink = document.getElementById('telegramLink');
+    const telegramDialog = document.getElementById('telegramDialog');
+    const closeTelegramDialog = document.getElementById('closeTelegramDialog');
+    const copyTelegramBtn = document.getElementById('copyTelegramBtn');
+    const telegramLinkInput = document.getElementById('telegramLinkInput');
 
-  closeTelegramDialog.addEventListener('click', () => {
-    telegramDialog.classList.remove('active');
-  });
-
-  copyTelegramBtn.addEventListener('click', () => {
-    telegramLinkInput.select();
-    document.execCommand('copy');
-    copyTelegramBtn.innerHTML = '<i class="fas fa-check"></i>';
-    setTimeout(() => {
-      copyTelegramBtn.innerHTML = '<i class="fas fa-copy"></i>';
-    }, 1500);
-  });
-
-  menuBtn.addEventListener('click', () => {
-    sidebar.classList.add('active');
-    overlay.classList.add('active');
-  });
-
-  overlay.addEventListener('click', () => {
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-  });
-
-  backBtn.addEventListener('click', () => {
-    profileDialog.classList.remove('active');
-  });
-
-  profileLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-    showProfileDialog();
-  });
-
-  function showProfileDialog() {
-    const profile = getProfile();
-    if (!profile || !profile.name) return;
-
-    document.getElementById('pAvatar').src =
-      profile.profile_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}`;
-    document.getElementById('pName').textContent = profile.name;
-    document.getElementById('pEmail').textContent = profile.email;
-    profileDialog.classList.add('active');
-  }
-
-  function getProfile() {
-    let profileData = null;
-
-    try {
-      if (window.hcProfile) {
-        profileData = window.hcProfile;
-      } else if (window.AndroidProfile && typeof window.AndroidProfile.getProfile === 'function') {
-        profileData = JSON.parse(window.AndroidProfile.getProfile());
-      } else if (localStorage.getItem('hc_profile')) {
-        profileData = JSON.parse(localStorage.getItem('hc_profile'));
-      }
-    } catch (e) {
-      console.error('Error loading profile:', e);
-    }
-
-    return profileData || {};
-  }
-
-  function onHcProfileReady(profile) {
-    try {
-      if (typeof profile === 'string') profile = JSON.parse(profile);
-      localStorage.setItem('hc_profile', JSON.stringify(profile));
-    } catch (e) {
-      console.warn('Profile injection failed:', e);
-    }
-  }
-async function loadNews() {
-  try {
-    const res = await fetch('information.json');
-    const data = await res.json();
-    if (!Array.isArray(data)) return;
-
-    // Sort by newest first
-    const sorted = data.sort((a, b) => Number(b.Date || 0) - Number(a.Date || 0));
-    newsContainer.innerHTML = '';
-
-    sorted.forEach(item => {
-      const readableDate = item.Date
-        ? new Date(Number(item.Date)).toLocaleString(undefined, {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          })
-        : '';
-
-      const div = document.createElement('div');
-      div.className = 'news-card';
-      div.innerHTML = `
-        <div class="news-title">${item.title || 'Untitled News'}</div>
-        <div class="news-date">${readableDate}</div>
-        ${item.youtubeURL ? `<iframe src="https://www.youtube.com/embed/${extractYouTubeId(item.youtubeURL)}" allowfullscreen></iframe>` : ''}
-        ${item.imageURL ? `<img src="${item.imageURL}" class="news-img" alt="News Image" />` : ''}
-      `;
-      newsContainer.appendChild(div);
-
-      const img = div.querySelector('.news-img');
-      if (img) img.onload = () => img.classList.add('loaded');
+    telegramLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      telegramDialog.classList.add('active');
     });
-  } catch (e) {
-    console.error('Failed to load news:', e);
-    newsContainer.innerHTML = '<p style="text-align:center;color:#888;">Failed to load news.</p>';
-  }
-}
 
+    closeTelegramDialog.addEventListener('click', () => {
+      telegramDialog.classList.remove('active');
+    });
 
-  function extractYouTubeId(url) {
-    const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return match && match[2].length === 11 ? match[2] : null;
-  }
+    copyTelegramBtn.addEventListener('click', () => {
+      telegramLinkInput.select();
+      document.execCommand('copy');
+      copyTelegramBtn.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => {
+        copyTelegramBtn.innerHTML = '<i class="fas fa-copy"></i>';
+      }, 1500);
+    });
 
-  loadNews();
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.add('active');
+      overlay.classList.add('active');
+    });
 
-  const profile = getProfile();
-  if (profile && profile.name) {
-    localStorage.setItem('hc_profile', JSON.stringify(profile));
-  }
-   logoutLink.addEventListener('click', (e) => {
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+    backBtn.addEventListener('click', () => {
+      profileDialog.classList.remove('active');
+    });
+
+    profileLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      showProfileDialog();
+    });
+
+    function showProfileDialog() {
+      const profile = getProfile();
+      if (!profile || !profile.name) return;
+      document.getElementById('pAvatar').src =
+        profile.profile_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}`;
+      document.getElementById('pName').textContent = profile.name;
+      document.getElementById('pEmail').textContent = profile.email;
+      profileDialog.classList.add('active');
+    }
+
+    function getProfile() {
+      let profileData = null;
+      try {
+        if (window.hcProfile) {
+          profileData = window.hcProfile;
+        } else if (window.AndroidProfile && typeof window.AndroidProfile.getProfile === 'function') {
+          profileData = JSON.parse(window.AndroidProfile.getProfile());
+        } else if (localStorage.getItem('hc_profile')) {
+          profileData = JSON.parse(localStorage.getItem('hc_profile'));
+        }
+      } catch (e) {
+        console.error('Error loading profile:', e);
+      }
+      return profileData || {};
+    }
+
+    function onHcProfileReady(profile) {
+      try {
+        if (typeof profile === 'string') profile = JSON.parse(profile);
+        localStorage.setItem('hc_profile', JSON.stringify(profile));
+      } catch (e) {
+        console.warn('Profile injection failed:', e);
+      }
+    }
+
+    async function loadNews() {
+      try {
+        const res = await fetch('information.json');
+        const data = await res.json();
+        if (!Array.isArray(data)) return;
+
+        const sorted = data.sort((a, b) => Number(b.Date || 0) - Number(a.Date || 0));
+        newsContainer.innerHTML = '';
+
+        for (const item of sorted) {
+          const readableDate = item.Date
+            ? new Date(Number(item.Date)).toLocaleString(undefined, {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })
+            : '';
+
+          const div = document.createElement('div');
+          div.className = 'news-card';
+          div.innerHTML = `
+            <div class="news-title">${item.title || 'Untitled News'}</div>
+            <div class="news-date">${readableDate}</div>
+            ${item.youtubeURL ? `<div class="video-thumb" data-id="${extractYouTubeId(item.youtubeURL)}" style="cursor:pointer;position:relative;">
+                <img src="https://img.youtube.com/vi/${extractYouTubeId(item.youtubeURL)}/hqdefault.jpg" class="news-img" alt="YouTube Thumbnail" />
+                <i class="fas fa-play-circle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;color:white;text-shadow:0 0 8px rgba(0,0,0,0.4);"></i>
+              </div>` : ''}
+            ${item.imageURL ? `<img src="${item.imageURL}" class="news-img" alt="News Image" />` : ''}
+          `;
+          newsContainer.appendChild(div);
+          requestAnimationFrame(() => div.classList.add('loaded'));
+        }
+
+        newsContainer.addEventListener('click', e => {
+          const thumb = e.target.closest('.video-thumb');
+          if (thumb) {
+            const id = thumb.dataset.id;
+            thumb.outerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allowfullscreen></iframe>`;
+          }
+        });
+      } catch (e) {
+        console.error('Failed to load news:', e);
+        newsContainer.innerHTML = '<p style="text-align:center;color:#888;">Failed to load news.</p>';
+      }
+    }
+
+    function extractYouTubeId(url) {
+      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return match && match[2].length === 11 ? match[2] : null;
+    }
+
+    loadNews();
+
+    logoutLink.addEventListener('click', (e) => {
       e.preventDefault();
       sidebar.classList.remove('active');
       overlay.classList.remove('active');
@@ -450,13 +452,11 @@ async function loadNews() {
 
     function logout() {
       localStorage.removeItem('hc_profile');
-
       if (window.AndroidProfile && typeof window.AndroidProfile.logout === 'function') {
         window.AndroidProfile.logout();
       }
       window.location.href = "/";
     }
-</script>
-
+  </script>
 </body>
 </html>
