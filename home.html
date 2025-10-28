@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: "Inter", Arial, sans-serif;
-      background: #f7f8fa;
+      background: #f3f4f6;
       color: #222;
       overflow-x: hidden;
     }
@@ -18,44 +18,69 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.8rem 1rem;
+      padding: 0.9rem 1rem;
       background: white;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 50;
     }
 
     .menu-btn {
       font-size: 1.5rem;
       cursor: pointer;
       color: #333;
+      transition: transform 0.2s ease;
+    }
+
+    .menu-btn:hover {
+      transform: scale(1.1);
     }
 
     .right-logo {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
 
     .right-logo:hover {
-      transform: scale(1.05);
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    /* Sidebar */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 15;
+    }
+
+    .sidebar-overlay.active {
+      opacity: 1;
+      pointer-events: all;
     }
 
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
+      left: -260px;
       width: 240px;
       height: 100vh;
       background: #fff;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
+      box-shadow: 3px 0 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem 1rem;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.3rem;
       transition: left 0.3s ease;
       z-index: 20;
     }
@@ -66,26 +91,28 @@
 
     .sidebar a {
       text-decoration: none;
-      color: #333;
-      font-size: 1rem;
+      color: #222;
+      font-size: 1.05rem;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.8rem;
       font-weight: 500;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
     .sidebar a:hover {
       color: #007bff;
+      transform: translateX(5px);
     }
 
     .sidebar img {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 4px;
       object-fit: cover;
     }
 
+    /* Main */
     main {
       max-width: 700px;
       margin: 1.5rem auto;
@@ -95,26 +122,26 @@
     .news-card {
       background: #fff;
       border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      padding: 1rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      padding: 1.2rem;
       margin-bottom: 1.5rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .news-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
 
     .news-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
 
     .news-date {
       font-size: 0.9rem;
-      color: #666;
+      color: #777;
       margin-bottom: 1rem;
     }
 
@@ -123,7 +150,12 @@
       border-radius: 0.8rem;
       margin-bottom: 1rem;
       object-fit: cover;
-      transition: opacity 0.3s ease;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .news-img.loaded {
+      opacity: 1;
     }
 
     iframe {
@@ -134,6 +166,7 @@
       margin-bottom: 1rem;
     }
 
+    /* Profile Dialog */
     .profile-dialog {
       position: fixed;
       top: 50%;
@@ -144,7 +177,7 @@
       padding: 1.5rem;
       width: 90%;
       max-width: 340px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease;
@@ -158,8 +191,8 @@
     }
 
     .profile-avatar {
-      width: 80px;
-      height: 80px;
+      width: 85px;
+      height: 85px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
@@ -201,7 +234,7 @@
 
     @media (max-width: 480px) {
       .news-title {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -212,10 +245,13 @@
     <img src="/assets/nra.png" alt="NRA Logo" class="right-logo" />
   </header>
 
+  <div class="sidebar-overlay" id="overlay"></div>
+
   <nav class="sidebar" id="sidebar">
     <a href="#" id="profileLink"><i class="fas fa-user"></i> Profile</a>
-    <a href="nra_lmk_and_dominex.html"><img src="/assets/nra.png" alt="NRA Icon" /> LMK and Dominex</a>
+    <a href="nra_lmk_and_dominex.html"><img src="/assets/nra.png" alt="NRA Icon" /> LMK & Dominex</a>
     <a href="policy.html"><i class="fas fa-file-alt"></i> Policy</a>
+    <a href="https://t.me/lmk1980" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
   </nav>
 
   <main id="newsContainer">
@@ -232,21 +268,30 @@
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
     const profileLink = document.getElementById('profileLink');
     const profileDialog = document.getElementById('profileDialog');
     const backBtn = document.getElementById('backBtn');
     const newsContainer = document.getElementById('newsContainer');
 
     menuBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
+      sidebar.classList.add('active');
+      overlay.classList.add('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
     });
 
     profileLink.addEventListener('click', (e) => {
       e.preventDefault();
       sidebar.classList.remove('active');
+      overlay.classList.remove('active');
       const profile = JSON.parse(localStorage.getItem('hc_profile') || '{}');
       if (!profile || !profile.name) return;
-      document.getElementById('pAvatar').src = profile.profile_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}`;
+      document.getElementById('pAvatar').src =
+        profile.profile_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}`;
       document.getElementById('pName').textContent = profile.name;
       document.getElementById('pEmail').textContent = profile.email;
       profileDialog.classList.add('active');
@@ -275,6 +320,9 @@
             ${item.imageURL ? `<img src="${item.imageURL}" class="news-img" alt="News Image" />` : ''}
           `;
           newsContainer.appendChild(div);
+
+          const img = div.querySelector('.news-img');
+          if (img) img.onload = () => img.classList.add('loaded');
         });
       } catch (e) {
         console.error('Failed to load news:', e);
