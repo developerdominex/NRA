@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NRA Login</title>
+  <style>
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(180deg, #f5f7fa 0%, #e4ebf0 100%);
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 2rem 1.5rem;
+      max-width: 380px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #eee;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      color: #333;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    #buttonDiv {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    #profilePreview {
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    #profilePreview img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+    }
+
+    #userName {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    #userEmail {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+      word-break: break-word;
+    }
+
+    #continueBtn {
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #continueBtn:hover {
+      background: #005fcc;
+    }
+
+    #messageBox {
+      display: none;
+      color: #c00;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+        border-radius: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/assets/nra.png" alt="NRA Logo" class="logo" />
+    <h1>NRA</h1>
+    <p>Login to view updates.</p>
+    <div id="buttonDiv"></div>
+    <div id="profilePreview">
+      <img id="userAvatar" alt="User Avatar" />
+      <div id="userName"></div>
+      <div id="userEmail"></div>
+      <button id="continueBtn">Continue</button>
+    </div>
+    <div id="messageBox"></div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const SUPABASE_URL = "https://dfzshvldanqfvfivjrqi.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRmenNodmxkYW5xZnZmaXZqcnFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ4MDIxNTEsImV4cCI6MjA3MDM3ODE1MX0.wdms-6G9eDzRuk1YiCpdyvVS-5CRKCsrq9WWWIFl9HA";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const buttonDiv = document.getElementById('buttonDiv');
+    const profilePreview = document.getElementById('profilePreview');
+    const userAvatar = document.getElementById('userAvatar');
+    const userName = document.getElementById('userName');
+    const userEmail = document.getElementById('userEmail');
+    const continueBtn = document.getElementById('continueBtn');
+    const messageBox = document.getElementById('messageBox');
+
+    const existing = localStorage.getItem('hc_profile');
+    if (existing) {
+      window.location.href = '/';
+      throw new Error('already logged in');
+    }
+
+    function showError(msg) {
+      messageBox.textContent = msg;
+      messageBox.style.display = 'block';
+      console.error(msg);
+    }
+
+    function loadGoogleIdentity() {
+      return new Promise((resolve, reject) => {
+        if (window.google && google.accounts && google.accounts.id) return resolve();
+        const scriptId = 'google-identity';
+        if (document.getElementById(scriptId)) {
+          const start = Date.now();
+          const poll = setInterval(() => {
+            if (window.google && google.accounts && google.accounts.id) {
+              clearInterval(poll);
+              resolve();
+            } else if (Date.now() - start > 5000) {
+              clearInterval(poll);
+              reject(new Error('Google Identity did not initialize in time'));
+            }
+          }, 100);
+          return;
+        }
+        const s = document.createElement('script');
+        s.src = 'https://accounts.google.com/gsi/client';
+        s.async = true;
+        s.defer = true;
+        s.id = scriptId;
+        s.onload = () => {
+          const start = Date.now();
+          const poll = setInterval(() => {
+            if (window.google && google.accounts && google.accounts.id) {
+              clearInterval(poll);
+              resolve();
+            } else if (Date.now() - start > 5000) {
+              clearInterval(poll);
+              reject(new Error('Google Identity loaded but failed to initialize'));
+            }
+          }, 100);
+        };
+        s.onerror = () => reject(new Error('Failed to load Google Identity script'));
+        document.head.appendChild(s);
+      });
+    }
+
+    async function initGoogleButton() {
+      try {
+        await loadGoogleIdentity();
+      } catch (err) {
+        showError('Google Sign-In failed to load: ' + err.message);
+        return;
+      }
+      if (!(window.google && google.accounts && google.accounts.id)) {
+        showError('Google API is not available in this environment.');
+        return;
+      }
+      google.accounts.id.initialize({
+        client_id: '549003131640-o9umsg7tu0uisopde76mlf3lg5krt5g7.apps.googleusercontent.com',
+        callback: handleCredentialResponse,
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+      google.accounts.id.renderButton(buttonDiv, {
+        theme: 'outline',
+        size: 'large',
+        text: 'signin_with',
+        shape: 'pill',
+        width: 280,
+        type: 'standard'
+      });
+    }
+
+    function parseJwtPayload(jwt) {
+      try {
+        const parts = jwt.split('.');
+        if (parts.length < 2) return null;
+        const payload = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+        const json = decodeURIComponent(atob(payload).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(json);
+      } catch (e) {
+        console.error('Invalid JWT', e);
+        return null;
+      }
+    }
+
+    async function handleCredentialResponse(response) {
+      if (!response || !response.credential) {
+        showError('No credential returned by Google.');
+        return;
+      }
+      const data = parseJwtPayload(response.credential);
+      if (!data) {
+        showError('Failed to decode Google credential.');
+        return;
+      }
+      userAvatar.src = data.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(data.name || '')}`;
+      userName.textContent = data.name || '';
+      userEmail.textContent = data.email || '';
+      profilePreview.style.display = 'block';
+      window.currentProfile = {
+        id: data.sub,
+        name: data.name,
+        email: data.email,
+        profile_url: data.picture || ''
+      };
+    }
+
+    continueBtn.addEventListener('click', async () => {
+      const profile = window.currentProfile;
+      if (!profile) { showError('No profile loaded. Please sign in first.'); return; }
+      try {
+        const { data: existing, error: selErr } = await supabase
+          .from('users')
+          .select('id, name, email, profile_url, created_at, updated_at')
+          .or(`id.eq.${profile.id},email.eq.${profile.email}`)
+          .maybeSingle();
+        if (selErr) throw selErr;
+        if (existing && existing?.id) {
+          localStorage.setItem('hc_profile', JSON.stringify(existing));
+          window.location.href = '/';
+          return;
+        }
+        const { data, error: insErr } = await supabase
+          .from('users')
+          .insert([{
+            id: profile.id,
+            name: profile.name,
+            email: profile.email,
+            profile_url: profile.profile_url
+          }])
+          .select()
+          .maybeSingle();
+        if (insErr) throw insErr;
+        localStorage.setItem('hc_profile', JSON.stringify(data));
+        window.location.href = '/';
+      } catch (err) {
+        showError('Supabase error: ' + (err.message || JSON.stringify(err)));
+      }
+    });
+
+    initGoogleButton();
+  </script>
+</body>
+</html>
