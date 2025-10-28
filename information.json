@@ -1,17 +1,752 @@
 [
   {
-    "title": "NRA Announces New Policy Framework for 2025",
-    "Date": "October 28, 2025",
-    "imageURL": "assets/announcement_of_policy.jpg"
-  },
-  {
     "title": "နေတိုး ၊မြင့်မြတ်၊အောင်ခိုင် တို့အား လူမြတ်ကျော် စိန်ခေါ်ခြင်း",
-    "Date": "October 27, 2025",
-    "youtubeURL": "https://www.youtube.com/watch?v=93t8Q-RLOnw?si=L-2IiZJnEiqi_LL0"
+    "youtubeURL": "https://www.youtube.com/watch?v=93t8Q-RLOnw",
+    "Date": 1761573135000
   },
   {
-    "title": "LMK Joins NRA as Key Collaborator",
-    "Date": "October 28, 2025",
-    "imageURL": "assets/lmk.png"
+    "title": "ဝမ်ပေါင် ကို အညာတပ်တွေ တိုက်ပြီ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=Ep87cuNv2rA",
+    "Date": 1761494876000
+  },
+  {
+    "title": "ဗိုလ်မှုးကျော်မင်းနဲ့ စခ 20အသက်မဲ့ပြီးစစ်ကြောင်း လန်သွားတဲ့ မြင်းခြံ တိုက်ပွဲ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=w1XQOVTNNxU",
+    "Date": 1761400694000
+  },
+  {
+    "title": "မအလ နဲ့ စောချစ်သူ ကို ကျားဖြန့်က လည်ပင်းကြိုးကွင်းစွပ်လိမ့်မယ်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=MUH_ybuy35g",
+    "Date": 1761316760000
+  },
+  {
+    "title": "တော်လှန်ရေး အောင်ပွဲရဲ့ သော့ချက်ဟာရခိုင်ပြည်နယ် ကျောက်ဖြူ နဲ့ စစ်ကိုင်းမကွေး ပဲ..",
+    "youtubeURL": "https://www.youtube.com/watch?v=4XW7LSWJUm4",
+    "Date": 1761229943000
+  },
+  {
+    "title": "အာရက္ခတပ် တော် AAနဲ့ ပူးပေါင်းတပ်တွေကပစ ၁၄ သိမ်းလိုက်နိုင်ရင် လေယာဉ်တွေ ပစ်ချနိုင်ပြီ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=ENFyK2RHv2o",
+    "Date": 1761146635000
+  },
+  {
+    "title": "နေပြည်တော် PDF ဆော်ပြီ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=FoOpcAJOwuQ",
+    "Date": 1761058897000
+  },
+  {
+    "title": "KK park  မှာ ဇာတ်လမ်းဆင်....",
+    "youtubeURL": "https://www.youtube.com/watch?v=Y2qOS1ikask",
+    "Date": 1760974322000
+  },
+  {
+    "title": "luu myat kyat live",
+    "youtubeURL": "https://www.youtube.com/watch?v=JE1x-wZ1goY",
+    "Date": 1760888368000
+  },
+  {
+    "title": "တရုတ်ရဲ့အမိန့်တော်မြတ်ပဲလား,  သီပေါကို လက်လွှတ် လိုက်ရလေပြီ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=6dsZeWRaOqU",
+    "Date": 1760712585000
+  },
+  {
+    "title": "နတ်ရေကန်ဗျုဟာ သိမ်းပိုက်ပြီးကပစ ၆ နဲ့ ကပစ ၁၆ ဆီသို့.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=WvYNO7oZN20",
+    "Date": 1760539150000
+  },
+  {
+    "title": "ဒုချုပ် စိုးဝင်း ကို မအလ ဖြုတ်ထုတ်ဖယ်ကျဉ်ခံရပြီ။....",
+    "youtubeURL": "https://www.youtube.com/watch?v=AVFWQkKEBG8",
+    "Date": 1760368920000
+  },
+  {
+    "title": "NRA မှ ပြည်သူ့ထံ သို့",
+    "youtubeURL": "https://www.youtube.com/watch?v=ThDFUlEa6jk",
+    "Date": 1760283428000
+  },
+  {
+    "title": "ကပစ တွေကို အာရက္ခတပ်တော် AA နဲ့ပူးပေါင်းတပ်တွေ သိမ်းပိုက်တော့မလား...",
+    "youtubeURL": "https://www.youtube.com/watch?v=gxtsjhSAZ0s",
+    "Date": 1760111241000
+  },
+  {
+    "title": "ဒေါ်အောင်ဆန်းစုကြည်ကို  စော်ကားလိုက်တဲ့ သက်သက်ခိုင် ကို ဘာပြောချင်လဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=agJbO7KnoG4",
+    "Date": 1760023168000
+  },
+  {
+    "title": "ရွေးကောက်ပွဲ အလွန် ဒေါ််အောင်ဆန်းစုကြည် ကို ထုတ်ကစားရင် တော်််််််လှန်ရေး ဘာဆက်ဖြစ်မလဲ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=Lcdj6nf8mzk",
+    "Date": 1759934357000
+  },
+  {
+    "title": "အနောက်ပိုင်းတိုင်းစစ်ဌာနချုပ်ကို တော်လှန်ရေးတပ်တွေ ထိုးစစ်ဆင်ကြဖို့ လိုပြီ  ,,,",
+    "youtubeURL": "https://www.youtube.com/watch?v=VFVOz7KIcTQ",
+    "Date": 1759904792000
+  },
+  {
+    "title": "မြန်မာ့တော်လှန်ရေး သမိုင်းမှာမရှိဘူးတဲ့  တပ်ချုပ်ဆိုတဲ့ကောင် ကို ရှေ့ာတိုက်နဲ့ လိုက်ပစ်နိုင်ပြီကွ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=RHIrypge6U4",
+    "Date": 1759848334000
+  },
+  {
+    "title": "ရန်ကုန်၊မန္တလေး၊ အစ မြိုပြမှာပျာ်နေကြချိန် ..စစ်ကိုင်းမှာ ဗုံးကြဲချ ငရဲတမျှ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=UHYCVBN4jT8",
+    "Date": 1759812346000
+  },
+  {
+    "title": "NRA မှ ပြည်သူ့ထံ သို့",
+    "youtubeURL": "https://www.youtube.com/watch?v=5XGm-bwrfUM",
+    "Date": 1759674819000
+  },
+  {
+    "title": "NRA မှ ပြည်သူ့ထံ သို့",
+    "youtubeURL": "https://www.youtube.com/watch?v=DhWEUgNY_6w",
+    "Date": 1759671437000
+  },
+  {
+    "title": "မန္တလေးရောက် မအလ တယောက် ရှော့ တိုက်တွေနဲ့ ကြို ဆို ခံရ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=7qpHjZgrSyY",
+    "Date": 1759586057000
+  },
+  {
+    "title": "ကျောက်မဲ ရှင်းတမ်း..ရွေးကောက်ပွဲသပိတ်မှောက်ကြ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=Kd-gbLcsKFM",
+    "Date": 1759507623000
+  },
+  {
+    "title": "ကျောက်မဲ ကိုပေးရလဲ မဆုတ်မနစ်အောင်ပွဲ ရအောင် ဆက်တိုက်မှာ ကွ ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=ZeSzyH7cezs",
+    "Date": 1759416374000
+  },
+  {
+    "title": "တော်လှန်ရေးရဲ့ အရှိတရားကိုရင်ဆိုင် စစ်ကိုအနိုင်တိုက်..",
+    "youtubeURL": "https://www.youtube.com/watch?v=3S9tEcl7lus",
+    "Date": 1759068171000
+  },
+  {
+    "title": "NRA MEMBER ၀င်များ ဖိတ်ခေါ် ပွဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=VAJDf55zzN0",
+    "Date": 1759037938000
+  },
+  {
+    "title": "‌နွေဦးတော်လှန်ရေးတရပ်လုံးရဲ့ ခေါင်းဆောင်...?",
+    "youtubeURL": "https://www.youtube.com/watch?v=kTJEk9rPwk4",
+    "Date": 1758983476000
+  },
+  {
+    "title": "စစ်ကိုင်း ချောင်းမ ၊ ခင်ဦး ၊ဗန်းမောက်အောင်ပွဲ တွေနဲ့ အထွေထွေ ထိုးစစ် ရဲ့အဖွင့် တွေလား....",
+    "youtubeURL": "https://www.youtube.com/watch?v=Xl0v1MD5yT4",
+    "Date": 1758811303000
+  },
+  {
+    "title": "KNU ဥက္ကဋ္ဌ၊ AA၊PDF တို့ကို အကြမ်းဖက်စစ်ကော်မရှင်က အမှုဖွင့်တရားစွဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=somNbhFtyqs",
+    "Date": 1758727102000
+  },
+  {
+    "title": "ပရော့ဂျက် ၃၀ ပြည်သူ့ချွေးနည်းစာငွေတွေဘယ်ရောက်သွားလဲ  ပေါ်တာစွဲခံရသူရဲ့ဓားရေးအစွမ်း အံ့မခန်းပဲ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=sngufdcwo5o",
+    "Date": 1758639475000
+  },
+  {
+    "title": "ပန်ဆယ်လို နဲ့ မမများနဲ့ပွဲကမယ် ပရေ့ဂျက် နဲ့ ပြသနာတွေ တက်....",
+    "youtubeURL": "https://www.youtube.com/watch?v=pDnSN2Ixeo8",
+    "Date": 1758554315000
+  },
+  {
+    "title": "တရုတ် ဝမ်ပေါင်လက်ပံတောင်းစီမံကိန်းကို  NUG MOD အောက်က တပ်ရင်းတွေ ငွေကြေးယူ ကာကွယ်ပေးနေသလား....",
+    "youtubeURL": "https://www.youtube.com/watch?v=JS9jl5u58d8",
+    "Date": 1758377424000
+  },
+  {
+    "title": "AA ကြိပ် လို နလန်မထူနိုင်တော့တဲ့ ကျောက်ဖြူ က စကမ တပ်တွေ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=d6zxHNA3pI4",
+    "Date": 1758287541000
+  },
+  {
+    "title": "ဗန်းမောက်မြိုကိုသိမ်း ပြီ၊ကပစ ၆ ထိ AAတပ်တွေ ရောက်ပြီ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=MLj8LpGSCaQ",
+    "Date": 1758117478000
+  },
+  {
+    "title": "တော်လှန်ရေးသားလျှော ရင် ပြည်သူ့ချွေးနည်းစာတွေ ကို ခိုးနေတဲ့ ပန်ဆယ်လို က နံပါတ် 1 တရားခံ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=NZSeapcE-f8",
+    "Date": 1758033235000
+  },
+  {
+    "title": "ပြည်သူ့ ပေးအပ်တဲ့ အာဏာအတွက်အသက်စွန့်ဝံ့သူ သမ္မတကြီး ဦးဝင်းမြင့်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=QadyziGifMY",
+    "Date": 1757948644000
+  },
+  {
+    "title": "မြန်မာနိုင်ငံသားတွေ တရုတ်ကျွန်အဖြစ်ခံတော့မလား,....",
+    "youtubeURL": "https://www.youtube.com/watch?v=0TX65glaqII",
+    "Date": 1757861718000
+  },
+  {
+    "title": "USလေယာဉ် ၂စီး မြန်မာပြည်ထဲဝင်လာ ၊ နေပြည်တော် ဖျာတန်းမီးလောင်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=1jMawQYMrHU",
+    "Date": 1757771357000
+  },
+  {
+    "title": "ပန်ဆယ်လို ဆီ ပို့ ပေးပါ.. မတွေ့ချင်‌ ယောင်ဆောင်မှာ စိုးလို့...",
+    "youtubeURL": "https://www.youtube.com/watch?v=5gEIP2_2Cto",
+    "Date": 1757686761000
+  },
+  {
+    "title": "တရုတ် ကို ဆက်ဆံရင်တော်လှန်ရေး နိုင်မလားတရုတ်ကို ဆန့်ကျင်ရင် တော်လှန်ရေး နိုင်မလား.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=h049LHDr320",
+    "Date": 1757604581000
+  },
+  {
+    "title": "​တော်လှန်ရေးကိုရပ်တန့်နိုင်မယ်လို့စိတ်ကူးယဥ်နေတာလားမင်းအောင်လှိုင်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=FkgS7kVqAGc",
+    "Date": 1757517520000
+  },
+  {
+    "title": "မအလနဲ့ လက်ဆွဲနှုတ်ဆက်အပြီး နီပေါဝန်ကြီးချုပ်ပြုတ်ပြီ နောက်တစ်ယောက်က ရှီကျင့်ဖင်လား..",
+    "youtubeURL": "https://www.youtube.com/watch?v=zVwi9RJA2Nw",
+    "Date": 1757430651000
+  },
+  {
+    "title": "စစ်ကိုင်း ဝက်လက်နယ်က လက်နက်ကိုင်သူ က ကျုးလွန်တဲ့ သက်ငယ်မုဒိန်း...",
+    "youtubeURL": "https://www.youtube.com/watch?v=aIqhxCx5G8I",
+    "Date": 1757345053000
+  },
+  {
+    "title": "တရုတ် မှားကြောင်း ပြဖို့ကျောက်ဖြူ နဲ့ စစ်တွေ ကို သိမ်းပိုက်ပြလိုက်ပါ အာရက္ခ တပ်တော် AA....",
+    "youtubeURL": "https://www.youtube.com/watch?v=O3taJYKDu-E",
+    "Date": 1757255549000
+  },
+  {
+    "title": "ခက်ခဲမှုတွေကြားမှ နွေးထွေးအားပေးဖေးမသော တွေ့ဆုံမှုတစ်ခု....",
+    "youtubeURL": "https://www.youtube.com/watch?v=kJPKj36jHPc",
+    "Date": 1757171636000
+  },
+  {
+    "title": "ဒေါန စစ်မြေပြင်က PDFရဲဘော်တွေရဲ့ အံကြိပ်သံ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=2t_wu3UGF78",
+    "Date": 1757083038000
+  },
+  {
+    "title": "အာရက္ခတပ်တော် AA နဲ့ အတူရပ်တည်ကြောင်းကြေငြာ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=IHYGH6qaQH8",
+    "Date": 1756998489000
+  },
+  {
+    "title": "ပြည်သူ့ လှုပ်ရှားမှု NO campaign  စပြီ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=geXeSLJ1VT8",
+    "Date": 1756911962000
+  },
+  {
+    "title": "တရုတ်လက်ထဲ မြစ်ဆုံထိုးအပ်လိုက်ပြီလား....",
+    "youtubeURL": "https://www.youtube.com/watch?v=rscRfXXPZqQ",
+    "Date": 1756826472000
+  },
+  {
+    "title": "ရှမ်ဟိုင်းသွားရလို့ ဂုဏ်ဆာမနေ နဲ့ မအလ ပရို‌တိုကောကခွေးကတက်မှာ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=IimKd9nNmW8",
+    "Date": 1756738433000
+  },
+  {
+    "title": "ရွေးကောက်ပွဲ ရအောင်လုပ်  ငါတို့လဲ ရအောင်ရပ်တန့်မယ်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=x2YT3F2UfMk",
+    "Date": 1756649288000
+  },
+  {
+    "title": "တရုတ် က စနစ်တကျ မအလ ကို လူရာဝင်စေပြီလား....",
+    "youtubeURL": "https://www.youtube.com/watch?v=1pr4I_LkaIM",
+    "Date": 1756566055000
+  },
+  {
+    "title": "ဒေါ်အောင်ဆန်းစုကြည်နဲ့ NLD ကို စန္ဒာမင်း သစ္စာဖောက်ပြီ....ပြစ်ဒဏ်ဘယ်လိုခတ်မလဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=glWPCRrTapk",
+    "Date": 1756477927000
+  },
+  {
+    "title": "မြဝတီ မှာ ဥပဒေမဲ့နေပြီလား......တပခ က အရာရှိ ၂ကောင် အပါ ၆ဦးအသက်မဲ့",
+    "youtubeURL": "https://www.youtube.com/watch?v=3hteHWjObDw",
+    "Date": 1756393555000
+  },
+  {
+    "title": "ဗန်းမော်မြို့သိမ်း ထိုးစစ် ပြန်စပြီ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=bDUxR1NEFAY",
+    "Date": 1756222214000
+  },
+  {
+    "title": "luu myat kyaw live 25.8.2025",
+    "youtubeURL": "https://www.youtube.com/watch?v=eLGWJFcHS4I",
+    "Date": 1756137643000
+  },
+  {
+    "title": "စစ်ကိုနိုင်အောင် တိုက်ပြီး စစ်ပွဲ ကို ရပ်ချင်ပြီ..တိုင်းပြည်လဲ ညက်ညက် ကျေကျေနေပြီ..",
+    "youtubeURL": "https://www.youtube.com/watch?v=L7iAyPslleA",
+    "Date": 1756048470000
+  },
+  {
+    "title": "luu myat kyaw live 23.8.2025",
+    "youtubeURL": "https://www.youtube.com/watch?v=XrTkHdi7HCk",
+    "Date": 1756046518000
+  },
+  {
+    "title": "luu myat kyaw live 23.8.2025",
+    "youtubeURL": "https://www.youtube.com/watch?v=8ZOr1qx6IUg",
+    "Date": 1755963145000
+  },
+  {
+    "title": "ကြံ့ဖွတ်တွေက အစိုးရ လုပ်မလို့တဲ့လား...",
+    "youtubeURL": "https://www.youtube.com/watch?v=RDNC66h-4_o",
+    "Date": 1755873272000
+  },
+  {
+    "title": "BWM နဲ့ ပူးပေါင်းတပ်တွေ ရှော့တိုက်နဲ့ ဆော်ပြီ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=-H3FJftTiBA",
+    "Date": 1755787427000
+  },
+  {
+    "title": "တရုတ်တွေကိုမောင်းထုတ်နေကြပြီ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=D0JVjCsM1bY",
+    "Date": 1755614668000
+  },
+  {
+    "title": "စစ်ကိုင်း မြို့ပေါ်ထိ တက်ဆော်ကြပြီတရားမဝင်ရွေးကောက်ပွဲ တားဆီးဖို့ ဗျုဟာ အသင့် ဖြစ်ပြီလား",
+    "youtubeURL": "https://www.youtube.com/watch?v=8Zj-xbqShJc",
+    "Date": 1755525916000
+  },
+  {
+    "title": "လူမြတ်ကျော်က  ကိုကိုကြီးတပည့်လား...",
+    "youtubeURL": "https://www.youtube.com/watch?v=i38rBp5mrIo",
+    "Date": 1755442211000
+  },
+  {
+    "title": "ရွေးကောက်ပွဲ ကို ဖျက် ပေါ်တာဆွဲ တာရပ်ဖို့...",
+    "youtubeURL": "https://www.youtube.com/watch?v=nbcWdHM_-Vc",
+    "Date": 1755435281000
+  },
+  {
+    "title": "ရန်ကုန် က တရားမဝင်ရွေးကောက်ပွဲအတွက်  ပြစ်ဒဏ် ခတ်ခြင်း စတင်ပြီ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=MSr5NKelGeQ",
+    "Date": 1755350903000
+  },
+  {
+    "title": "နိုင်ငံလုံးဆိုင်ရာတော်လှန်ရေးမဟာမိတ်တပ်‌ပေါင်းစု နဲ့ ပြည်သူ တရပ်လုံး လက်တွဲကာ စစ်အနိုင်ကြတိုက်မယ်ဟေ့",
+    "youtubeURL": "https://www.youtube.com/watch?v=_OapuCAHBfs",
+    "Date": 1755096809000
+  },
+  {
+    "title": "မင်းခြံသား MBT နဲ့ ပူးပေါင်းတပ်တွေရဲ့ တပ်လှန်သည်အထိ ခုခံစစ်နဲ့ ရဲစွမ်းသတ္တိ",
+    "youtubeURL": "https://www.youtube.com/watch?v=wG4FK1iOrkc",
+    "Date": 1755008845000
+  },
+  {
+    "title": "မြန်မာ့တော်လှန်ရေး နဲ့ အိမ်နီးချင်းများမသာချတာနဲ့ ဈာပန ပွဲ ကွာပါ့ကွာ",
+    "youtubeURL": "https://www.youtube.com/watch?v=mE06ZrukJ8I",
+    "Date": 1754922103000
+  },
+  {
+    "title": "ဇော်ဘုန်းဟိန်း ကို ချက်ချင်းလွှတ် ဖို မအော်ကြဘူးလား...နေပြည်က မသာစီတန်းလှည့်လည်ပွဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=xmlWQU9YYl0",
+    "Date": 1754748491000
+  },
+  {
+    "title": "၈ လေးလုံးသင်ခန်းစာ မှနွေဦး တော်လှန်ရေးအောင်ပွဲဆီသို့",
+    "youtubeURL": "https://www.youtube.com/watch?v=82J_YVVjXiY",
+    "Date": 1754668637000
+  },
+  {
+    "title": "မသာပေါ်တာ အတော်ပျော် နေကြပြီ...အဓ္ဓပြုကျင့်ခံရသူကို ခြိမ်းခြောက်‌ ‌‌ နေတဲ့ ပကဖ",
+    "youtubeURL": "https://www.youtube.com/watch?v=BRKs4MZCH64",
+    "Date": 1754577139000
+  },
+  {
+    "title": "မြင့်ဆွေ တယောက် သေလုမျောပါးတရုတ် နဲ့ တော်လှန်ရေး",
+    "youtubeURL": "https://www.youtube.com/watch?v=BCnqvXEas40",
+    "Date": 1754492640000
+  },
+  {
+    "title": "အင်း​ေတာ်ဂျပန်လှိုဏ်ဂူထဲက ဖက်စစ်တပ်ရဲ့ ယုတ်မာမှုများ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=e5RJAzhIRCE",
+    "Date": 1754405518000
+  },
+  {
+    "title": "ကယန်းအမျိုးသားတပ်မတော် နှင့် တွေ့ဆုံခြင်း",
+    "youtubeURL": "https://www.youtube.com/watch?v=_QXo1lgEwEs",
+    "Date": 1754301652000
+  },
+  {
+    "title": "ကယန်းအမျိုးသားတပ်မတော် နှင့် တွေ့ဆုံးခြင်း",
+    "youtubeURL": "https://www.youtube.com/watch?v=0fM2DCtaI-I",
+    "Date": 1754297692000
+  },
+  {
+    "title": "ကန်ထောင့်ကိုစစ်တပ်ကပြန်သိမ်းပြီလို့ဘယ်ကောင်ပြောတာလဲ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=zyWqoYKkJ_o",
+    "Date": 1754148682000
+  },
+  {
+    "title": "မြို့နယ် (60)ကျော် စစ်ရှုံးနေကြောင်းဝန်ခံရပြီ ဖြစ်တဲ့ မအလ",
+    "youtubeURL": "https://www.youtube.com/watch?v=-LOF2yzdZwE",
+    "Date": 1754064976000
+  },
+  {
+    "title": "နိုင်ငံရေး စစ်ရေး နှစ်ရပ်လုံး ထိန်းချုပ်ခါ မအလမှ မအလသို့ အာဏာလွဲ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=kWj2TwZoiGs",
+    "Date": 1753974226000
+  },
+  {
+    "title": "MNDAA စစ်သံပေးပြီ ..ရန်ကုန် မန်း လမ်းဟောင်းဆာဂွန်းဂိတ် ဝင်တိုက်ပြီး စလင်း တညောင်ရဲစခန်း ပြာချ..",
+    "youtubeURL": "https://www.youtube.com/watch?v=RZA2L6xEe2Y",
+    "Date": 1753888377000
+  },
+  {
+    "title": "ဒေါက်တာဇော်ဝေစိုးပြောတဲ့ ဖက်ဒရယ်နိုင်ငံတော်သစ်ခေါင်းဆောင်တွေတကယ်ရပြီလား...",
+    "youtubeURL": "https://www.youtube.com/watch?v=Jjc3IAIPHqs",
+    "Date": 1753804968000
+  },
+  {
+    "title": "ရန်ကုန် လှိုင်သာယာပျု 5ကောင်ရှင်း ...မိုးကုတ်မြို့ ထူးခြားဖြစ်စဉ်",
+    "youtubeURL": "https://www.youtube.com/watch?v=6YW3YAsK47I",
+    "Date": 1753714609000
+  },
+  {
+    "title": "မန္တလေး ဆီ စစ်ချီတော့မလား..",
+    "youtubeURL": "https://www.youtube.com/watch?v=LprLOE7PYGk",
+    "Date": 1753197531000
+  },
+  {
+    "title": "မတ္တရာမြို့နယ် ၊ပုသိမ်ကြီး မြို့နယ် နောက်တန်းစခန်း ၃ခုကို MDY PDF လျှပ်တပြက်ထိုးစစ်ဆင်သိမ်းပိုက်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=TXcIHsuxU8c",
+    "Date": 1753107791000
+  },
+  {
+    "title": "အာဇာနည်ဟာ ၉ ဦးမကတော့ပါ  ဇူလိုင် ၁၉ မှာအာဇာနည်ဗိမာန်ပေါ် ခွေးတွေတက်..",
+    "youtubeURL": "https://www.youtube.com/watch?v=xXlttmSfU4c",
+    "Date": 1752940880000
+  },
+  {
+    "title": "နောင်ချို ကို ဘုရင့်နောင်ဖောင်ဖျက် ပြန်တိုက်မှ ရမယ်",
+    "youtubeURL": "https://www.youtube.com/watch?v=9l9Uu381JT4",
+    "Date": 1752853338000
+  },
+  {
+    "title": "အောင်ပွဲရဖို့ ဗျူဟာပြောင်းကြစို့....",
+    "youtubeURL": "https://www.youtube.com/watch?v=e1DqEA9AWnI",
+    "Date": 1752765313000
+  },
+  {
+    "title": "NUG ကိုပြင်မလား၊ဖျက်သိမ်းမလား.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=tB75CzKjDjI",
+    "Date": 1752592935000
+  },
+  {
+    "title": "ကြံခိုင်ရေးအမတ် တရုတ်ဖမ်းပြီ။ EROs. PDF. များသိုနေပြည်တော် ၊ရန်ကုန်၊ မန္တလေး တို့ဆီသာ စစ်ချီ",
+    "youtubeURL": "https://www.youtube.com/watch?v=QZfn9uur2b4",
+    "Date": 1752505891000
+  },
+  {
+    "title": "နောင်ချိုမကျဖို့TNLA နဲ့DPLAတပ်တွေဦးဆွေးဆံမြေ့ခုခံစစ်ကိုဆင်နွဲနေကြ",
+    "youtubeURL": "https://www.youtube.com/watch?v=Pwm3U94gxIs",
+    "Date": 1752419547000
+  },
+  {
+    "title": "သက်ရှိစည်းရိုး ဥကရစ်ထ တော့ ဂွေးတန်းလန်းနဲ့ပြေးရပြီ... ဝေါလေဗျုဟာ",
+    "youtubeURL": "https://www.youtube.com/watch?v=YlU8PrZ_HFM",
+    "Date": 1752331681000
+  },
+  {
+    "title": "NUG ကိုစိတ်ပျက်လို့ရတယ် တော်လှန်ရေးကိုစိတ်ပျက်လို့မရဘူး...",
+    "youtubeURL": "https://www.youtube.com/watch?v=S66zPH_vtec",
+    "Date": 1752245593000
+  },
+  {
+    "title": "တိုင်းရင်းသားများနဲ့ အင်အားစုများပါဝင်တဲ့ တော်လှန်ရေး အစိုးရသစ် တရပ် ဖွဲ့စည်းချိန်တန်ပြီ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=ajfTz5YgEGU",
+    "Date": 1752072139000
+  },
+  {
+    "title": "ဒီမိုး ဒီလေ ဒီလူ တွေ နဲ့ပဲNUG ဆက်သွားမယ် ဆိုရင် ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=Y2jrU19t3Ck",
+    "Date": 1751987395000
+  },
+  {
+    "title": "စစ်တပ်ကို အမြစ်ဖျက်ဖို အသင့်ဖြစ်ပြီလား..ဗိုလ်ချုပ်သားသမီး တွေ ဘာ့စစ်မှု မထမ်း ရတာလဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=ztjIH1cDurc",
+    "Date": 1751815527000
+  },
+  {
+    "title": "မင်းအောင်လှိုင်လေတပ်ရဲ့အစီး၃၀မြောက် US $18.5သန်းတန် FTC200G လေယာဉ်ကရင်နီ တော်လှန်ရေးတပ်များပစ်ချ",
+    "youtubeURL": "https://www.youtube.com/watch?v=YSAoONm7qlQ",
+    "Date": 1751552421000
+  },
+  {
+    "title": "ရန်ကုန် လှိုင်သာယာရှင်းတမ်း နဲ့ ဖားဆောင်းအောင်ပွဲ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=vRKOwjpa4yY",
+    "Date": 1751466447000
+  },
+  {
+    "title": "နိုင်ငံတော်ပုန်ကန်သူမင်းအောင်လှိုင်ကို ဥပဒေအရ မျက်ကွယ်သေဒဏ်ဖြင့်အပြစ်ပေးလို့ရနိုင်သလား.",
+    "youtubeURL": "https://www.youtube.com/watch?v=bCV1ClPlu4A",
+    "Date": 1751383216000
+  },
+  {
+    "title": "AA ဧရာဝတီမှာ သိမ်းပြန်ပြီ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=cUiUUa-dyys",
+    "Date": 1751298413000
+  },
+  {
+    "title": "နမခ သို့ ရော့ကက်နဲ့ဆော် စခ ၁၂ ကောင်မသာပေါ်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=629GphJMJ_Q",
+    "Date": 1751208393000
+  },
+  {
+    "title": "အမေစုစိုးရိမ်ရလား ပကဖတွေရမ်းကားနေပြီ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=aoqLEGffxw8",
+    "Date": 1751121141000
+  },
+  {
+    "title": "NUG က ပကဖ တွေ အရေးမယူရဲဘူးလား ထီးချိုင့် နဲ့အင်ဝိုင်းပကဖ တွေကို ရှုချကြ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=ETgDmmxa69I",
+    "Date": 1751037882000
+  },
+  {
+    "title": "ရန်ကုန်- မန္တလေးလမ်းဟောင်း ပဲခူး ,ဖြူး လျှပ်တပြက်တိုက်ပွဲ များမှသည် မြို့ပြ ထိုးစစ်ဆင်တော့မှာလား",
+    "youtubeURL": "https://www.youtube.com/watch?v=zcvwbBkgJ5k",
+    "Date": 1750950623000
+  },
+  {
+    "title": "တပြိုင်ထိုးစစ် ဗျုဟာ အစမ်းလေ့ကျင့်လေပြီ ရန်ကုန်-မန္တလေးလမ်းဟောင်းက စခန်း ၉ ခု တပြိုင်နက် တိုက်ခိုက်",
+    "youtubeURL": "https://www.youtube.com/watch?v=N5ynQcOicR4",
+    "Date": 1750865329000
+  },
+  {
+    "title": "ဩဇီက NLD အကြောင်းကန်ထောင့်အောင်ပွဲကိုဂုဏ်ပြုမယ်...",
+    "youtubeURL": "https://www.youtube.com/watch?v=5dGHLPB2jEU",
+    "Date": 1750776611000
+  },
+  {
+    "title": "NUG -CRPH နဲ့ NLD ပါတီဝင် သန်းပေါင်း များစွာက စန္ဒာမင်း ပြောစကားဘယ်လို သဘောထားရှိလဲ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=I8G8fizKFFk",
+    "Date": 1750689784000
+  },
+  {
+    "title": "တတိယကမ္ဘာစစ်ဖြစ်ခဲ့ရင် မြန်မာနိုင်ငံကို သိမ်းပိုက်မှာ တရုတ်ပဲ..",
+    "youtubeURL": "https://www.youtube.com/watch?v=tbH2EXYmzeU",
+    "Date": 1750603154000
+  },
+  {
+    "title": "လူမြတ်ကျော် နှင့်အတူ....Myanmar revolution  civil war presentation, news...",
+    "youtubeURL": "https://www.youtube.com/watch?v=l-jw79toqv4",
+    "Date": 1750435757000
+  },
+  {
+    "title": "အောင်လံနီလွင့်ထူလိုက်နိုင်တဲ့ ဒေါ်အောင်ဆန်းစုကြည်အသက် ၈၀ ပြည့်မွေးနေ့....",
+    "youtubeURL": "https://www.youtube.com/watch?v=31K5ypGiXo8",
+    "Date": 1750345112000
+  },
+  {
+    "title": "အမေစုမွေးနေ့ဆုတောင်းသံတွေက ဖက်ဆစ်တပ်အတွက် ကမ္မဝါဖတ်သံ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=EX-SPe32CDA",
+    "Date": 1750256712000
+  },
+  {
+    "title": "ဗိုလ်ထိုက်မောင် အပါ လူ၂၀ လုပ်ကြံခံရမှု တွင် ဗိုလ်သံမဏိ မှာ အပြစ်ရှိမရှိ..",
+    "youtubeURL": "https://www.youtube.com/watch?v=bW6Qns9TshI",
+    "Date": 1750212030000
+  },
+  {
+    "title": "ရန်ကုန်-ပြည်လမ်းထိ ရောက်လာတဲ့ တော်လှန် ထိုးစစ်....",
+    "youtubeURL": "https://www.youtube.com/watch?v=lCDeA10PZv0",
+    "Date": 1750172583000
+  },
+  {
+    "title": "ကျောက်ဖြူAAကိုသိမ်းတော့မယ် စကစ နဲ့ ပကဖ တူနေပြီလား....",
+    "youtubeURL": "https://www.youtube.com/watch?v=36FQlPzBBbY",
+    "Date": 1750088190000
+  },
+  {
+    "title": "နမခ သို့ ရှေ့တိုက်ဒုံး နှင့် ကျောက်ဖြူလက်နက်ချတပ်ရင်း...",
+    "youtubeURL": "https://www.youtube.com/watch?v=3qFl8rrSSdQ",
+    "Date": 1749998314000
+  },
+  {
+    "title": "ရန်ကုန် မှာ ပျုတွေ နဲ့ ရဲ တွေ ပစ်ခတ်... သူပုန်ကော်ဖီ နဲ့ မောက်ခမ်း၀ါ",
+    "youtubeURL": "https://www.youtube.com/watch?v=mk0tGwMWhr4",
+    "Date": 1749907799000
+  },
+  {
+    "title": "Daw Aung San Su Kyi မွေးနေ့ မှာ ပြည်တော်၀င်ပါ......",
+    "youtubeURL": "https://www.youtube.com/watch?v=fPb0FwY8tBk",
+    "Date": 1749825615000
+  },
+  {
+    "title": "စစ်တွေ လျှပ်တပြက် တိုက်ပွဲ AAဆင်နွှဲပြီး သံချပ်ကာ ယာဉ် 2စီး ကို ဖျက်ဆီး အညာဌက်ကင်က ပစ်ချ ခံရတာ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=PWZ0565DJb8",
+    "Date": 1749653337000
+  },
+  {
+    "title": "စစ်ကိုင်းအညာမြေ ရဲ့ ပထမဆုံး ပစ်ချ နိုင်ခဲ့တဲ့ ဂျက်ဖိုက်တာ",
+    "youtubeURL": "https://www.youtube.com/watch?v=BZMAKJlZ86Q",
+    "Date": 1749561268000
+  },
+  {
+    "title": "နွေဦးတော်လှန်ရေး ကအမျိုးသားလွတ်မြောက် ရေး လားပြည်သူ့ လွတ်မြောက်ရေး လား...",
+    "youtubeURL": "https://www.youtube.com/watch?v=FnANZV2togU",
+    "Date": 1749484287000
+  },
+  {
+    "title": "စစ်ဗိုလ်ချုပ်တွေ ဝင်ပြိုင်မည့်  ရွေးကောက်ပွဲ ဘယ်လို ရပ်တန့်မလဲအဖြေက...",
+    "youtubeURL": "https://www.youtube.com/watch?v=lLNEL61O7-s",
+    "Date": 1749397139000
+  },
+  {
+    "title": "လူမြတ်ကျော် နှင့်အတူ....Myanmar revolution  civil war presentation, news...",
+    "youtubeURL": "https://www.youtube.com/watch?v=imqYTXD2Qi4",
+    "Date": 1749374447000
+  },
+  {
+    "title": "စစ်ကိုင်း ကန့်ဒေါင့် တိုက်ပွဲ ပူးပေါင်းတပ်တွေ အပြင်းအထန်တိုက်နေ",
+    "youtubeURL": "https://www.youtube.com/watch?v=hTp8Y5JDLrQ",
+    "Date": 1749307417000
+  },
+  {
+    "title": "ပုလဲ ကန်ဒေါင့်ရဲစခန်း တိုက်ပွဲ ပြင်းတယ် စစ်ဗိုလ် ၂ယောက် ကို သစ္စာဆိုခိုင်းတဲ့PDF..",
+    "youtubeURL": "https://www.youtube.com/watch?v=GtTIHt9zeMQ",
+    "Date": 1749225128000
+  },
+  {
+    "title": "မကွေးငဖဲက နတ်ရေကန်တာဝါတိုင်ကုန်းကိုAA နဲ့ပူးပေါင်းတပ်တွေသိမ်းပိုက်ရရှိ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=8Wpf-_18rRo",
+    "Date": 1749136191000
+  },
+  {
+    "title": "အထွေထွေထိုးစစ်ကြီးကို ဒီဇင်ဘာမတိုင်ခင်စကြ.....",
+    "youtubeURL": "https://www.youtube.com/watch?v=3PhNF7Kw3fc",
+    "Date": 1749050114000
+  },
+  {
+    "title": "သေ့ဘောဘိုး စခန်း သိမ်းပိုက်ပြီ ကျောက်ဖြူ စစ်တပ် စိတ်ဓာတ်ပျက်",
+    "youtubeURL": "https://www.youtube.com/watch?v=LDrAzQa7gVU",
+    "Date": 1748962697000
+  },
+  {
+    "title": "သီတဂူ  နဲ့ ဘုန်ကြီးကျောင်းတွေ ဆီက လိုင်စင်မဲ့ကားတွေ ဖမ်းရဲလား",
+    "youtubeURL": "https://www.youtube.com/watch?v=mUrTcDRv_tg",
+    "Date": 1748873327000
+  },
+  {
+    "title": "လိုင်စင်မဲ့ (without )ကားတွေ ဖမ်းချင်ရင်သီတဂူ ဆရာတော် ကို အရင်ဖမ်း",
+    "youtubeURL": "https://www.youtube.com/watch?v=fZdPHX-mO60",
+    "Date": 1748842878000
+  },
+  {
+    "title": "တိုင်းစစ်ဦးစီးမှုး G1ဗိုလ်မှုးကြီးကျော်လင်းကြိုင်နှင့် ကောင်(၃၀)အရှင်မိ",
+    "youtubeURL": "https://www.youtube.com/watch?v=fwMl9VOJbOQ",
+    "Date": 1748702178000
+  },
+  {
+    "title": "မော်ခီး ကနဲလေး ဘုရင့်နောင်စခန်း တွေ တပြိုင်နက် သိမ်းပိုက် နေတဲ့ KNLA .PDF ပူးပေါင်းတပ်တွေ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=o15kWiLYku8",
+    "Date": 1748614524000
+  },
+  {
+    "title": "စစ်အာဏာရှင်ချုပ်ငြိမ်းရေးက ချွင်းချက်မရှိစေရ",
+    "youtubeURL": "https://www.youtube.com/watch?v=yrEQmVoUh4Y",
+    "Date": 1748531781000
+  },
+  {
+    "title": "နိုင်ငံသစ် အတွက် တော်လှန်ထိုးစစ် ကောက်ကြောင်းများ ရန်ကုန် နဲ့ နေပြည်တော် ဆီ စစ်ဝင်လာတော့မလား....",
+    "youtubeURL": "https://www.youtube.com/watch?v=-GIddF3QHb8",
+    "Date": 1748356354000
+  },
+  {
+    "title": "နိုင်ငံလုံးဆိုင်ရာ တော်လှန်ထိုးစစ်ဆင်တော့မလား နမခ ဆီသို့ ရှော့တိုက် ဒုံး တွေ ရောက်ရှိ",
+    "youtubeURL": "https://www.youtube.com/watch?v=-nj9mIJHcH8",
+    "Date": 1748272495000
+  },
+  {
+    "title": "မြင်းခြံကို သိမ်းကိုသိမ်းမှာ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=AVW6MIs8bgc",
+    "Date": 1748186499000
+  },
+  {
+    "title": "ခိုင်နှင်းဝေသိန်း ၃၀ ပြန်းပေး..",
+    "youtubeURL": "https://www.youtube.com/watch?v=roQMpRhXrpg",
+    "Date": 1748157571000
+  },
+  {
+    "title": "ဘက်စုံ တိုက်ပွဲ အထွေထွေ ထိုးစစ်နဲ့ စစ်ချီ သံ စစ်ခရာမှုတ်သံ နားစွင့်ကြ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=sS2kQQaEbwU",
+    "Date": 1748098325000
+  },
+  {
+    "title": "ပုဇင်းကင်ဗျုဟာ မှာ ပါဝင်ခဲ့သူ ဗန်းမော် စစ်မြေပြင် မှ အသံ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=MHYXsRcz5uI",
+    "Date": 1747968164000
+  },
+  {
+    "title": "မအလ...ခွေးပါစပ်က နတ်စကားထွက်ပြန်ပြီ...",
+    "youtubeURL": "https://www.youtube.com/watch?v=bW3rv2JIYMg",
+    "Date": 1747927984000
+  },
+  {
+    "title": "ရန်ကုန် က ဗိုလ်ချုပ်ချိုထွန်းအောင် ကို ရှင်းအပြီး သက်ပျောက်ဆွမ်း ကပ်ရမယ် လေဘဲများစာရင်း",
+    "youtubeURL": "https://www.youtube.com/watch?v=caFZBbo1NsI",
+    "Date": 1747894830000
+  },
+  {
+    "title": "ပေါင်းတည်.နတ်တလင်းမှသည် ပဲခူးသို့ စစ်ချီပြီ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=53YT8qfNG8Q",
+    "Date": 1747838937000
+  },
+  {
+    "title": "ဗန်မော်ငှက်ကင်နောက်ဆုံးအခြေနေနှင့် တမူးပကဖအရေး",
+    "youtubeURL": "https://www.youtube.com/watch?v=nJGLsoK8UeM",
+    "Date": 1747810994000
+  },
+  {
+    "title": "KIA ဉီးဆောင်သောတပ်ပေါင်းစုကြီး ဗန်းမော်နှင့် ဖားကန့် တွင်တိုက်ပွဲပြင်းထန် ပုစဉ်းနှစ်ကောင် ကင်",
+    "youtubeURL": "https://www.youtube.com/watch?v=nF74ZeP6FcI",
+    "Date": 1747743932000
+  },
+  {
+    "title": "တန်ရာ တန်ကြေး တောင်းတဲ့ ပွဲ ဟေ့... ချန်းရီ အလုပ်သမားတိုက်ပွဲ....",
+    "youtubeURL": "https://www.youtube.com/watch?v=Wk1VUt3X7VQ",
+    "Date": 1747727986000
+  },
+  {
+    "title": "သံဝောာင်ကြီး ဘုရင့်နောင်တပ်မြို့ရှေ့တိုက် ဒုံး ၅လုံး တဲ့ ဟေ့",
+    "youtubeURL": "https://www.youtube.com/watch?v=mEeXsQ4HKUc",
+    "Date": 1747661663000
+  },
+  {
+    "title": "မြန်မာတွေ အပျော်မက်ပြီးကိုယ်ချင်းစာ တရား ကင်းမဲ့တဲ့ တိုင်းပြည် ဖြသ်သွားပြီလား။ #luumyatkyaw",
+    "youtubeURL": "https://www.youtube.com/watch?v=fa9BNJUKr08",
+    "Date": 1747470508000
+  },
+  {
+    "title": "စစ်ရေးချိန်ခွင်လျှာပြောင်းလဲမဲ့ စစ်မျက်နှာ ၃ရပ် အရှုံးပေးချင်နေပြီမလား မင်းအောင်လှိုင်..",
+    "youtubeURL": "https://www.youtube.com/watch?v=r_DBWlP0vD8",
+    "Date": 1747409138000
+  },
+  {
+    "title": "ဧရာဝတီ လေးမျက်နှာရေကြည် AA ဆော်ပြီ မြင်းခြံတောင်သာနွားထိုးကြီးဆီမီးခုံတိုက်ပွဲ",
+    "youtubeURL": "https://www.youtube.com/watch?v=zXqeXCRmiAY",
+    "Date": 1747320696000
+  },
+  {
+    "title": "ဌက်ကင် ပရောဂျက် Dragon FIy နဲ့ဒီပဲယင်း အိုးထိမ်းကွင်း ရွာ လေကြောင်း ဗုံးကြဲမှု..",
+    "youtubeURL": "https://www.youtube.com/watch?v=qzYonvFg5nY",
+    "Date": 1747149456000
+  },
+  {
+    "title": "ဇော်ဘုန်းဟိန်း ၊ကျော်စိုးဦး ၊သဇင်ဦး ကိုယ်ပြောတာ ကိုယ်မှတ်ထား",
+    "youtubeURL": "https://www.youtube.com/watch?v=oIT0ydsWbEQ",
+    "Date": 1747068351000
+  },
+  {
+    "title": "စစ်ပွဲတွေ စာသင်ခန်းထဲ ထိရောက်လာပြီအစစီ ဖြစ်နေတဲ့ ဖြူစိမ်းဝတ် သက်မဲ့ ကလေးငယ်တွေ",
+    "youtubeURL": "https://www.youtube.com/watch?v=uV27IsT6hG0",
+    "Date": 1747061782000
   }
 ]
