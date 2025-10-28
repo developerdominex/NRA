@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NRA News</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: #f7f8fa;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+      background: white;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .menu-btn {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .right-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .right-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 240px;
+      height: 100vh;
+      background: #fff;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: left 0.3s ease;
+      z-index: 20;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar a:hover {
+      color: #007bff;
+    }
+
+    .sidebar img {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+
+    .news-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .news-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .news-date {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .news-img {
+      width: 100%;
+      border-radius: 0.8rem;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 340px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 30;
+    }
+
+    .profile-dialog.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+
+    .profile-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .profile-email {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    .back-btn:hover {
+      background: #005fcc;
+    }
+
+    @media (max-width: 480px) {
+      .news-title {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <i class="fas fa-bars menu-btn" id="menuBtn"></i>
+    <img src="/assets/nra.png" alt="NRA Logo" class="right-logo" />
+  </header>
+
+  <nav class="sidebar" id="sidebar">
+    <a href="#" id="profileLink"><i class="fas fa-user"></i> Profile</a>
+    <a href="about_nra.html"><img src="/assets/nra.png" alt="NRA Icon" /> About NRA</a>
+    <a href="policy.html"><i class="fas fa-file-alt"></i> Policy</a>
+  </nav>
+
+  <main id="newsContainer">
+    <!-- News items will load dynamically -->
+  </main>
+
+  <div class="profile-dialog" id="profileDialog">
+    <img id="pAvatar" class="profile-avatar" alt="Profile Avatar" />
+    <div id="pName" class="profile-name"></div>
+    <div id="pEmail" class="profile-email"></div>
+    <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i>&nbsp;Back</button>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const profileLink = document.getElementById('profileLink');
+    const profileDialog = document.getElementById('profileDialog');
+    const backBtn = document.getElementById('backBtn');
+    const newsContainer = document.getElementById('newsContainer');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    profileLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      sidebar.classList.remove('active');
+      const profile = JSON.parse(localStorage.getItem('hc_profile') || '{}');
+      if (!profile || !profile.name) return;
+      document.getElementById('pAvatar').src = profile.profile_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}`;
+      document.getElementById('pName').textContent = profile.name;
+      document.getElementById('pEmail').textContent = profile.email;
+      profileDialog.classList.add('active');
+    });
+
+    backBtn.addEventListener('click', () => {
+      profileDialog.classList.remove('active');
+    });
+
+    async function loadNews() {
+      try {
+        const res = await fetch('information.json');
+        const data = await res.json();
+        if (!Array.isArray(data)) return;
+
+        const sorted = data.sort((a, b) => new Date(b.Date || 0) - new Date(a.Date || 0));
+        newsContainer.innerHTML = '';
+
+        sorted.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'news-card';
+          div.innerHTML = `
+            <div class="news-title">${item.title || 'Untitled News'}</div>
+            <div class="news-date">${item.Date || ''}</div>
+            ${item.youtubeURL ? `<iframe src="https://www.youtube.com/embed/${extractYouTubeId(item.youtubeURL)}" allowfullscreen></iframe>` : ''}
+            ${item.imageURL ? `<img src="${item.imageURL}" class="news-img" alt="News Image" />` : ''}
+          `;
+          newsContainer.appendChild(div);
+        });
+      } catch (e) {
+        console.error('Failed to load news:', e);
+        newsContainer.innerHTML = '<p style="text-align:center;color:#888;">Failed to load news.</p>';
+      }
+    }
+
+    function extractYouTubeId(url) {
+      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return match && match[2].length === 11 ? match[2] : null;
+    }
+
+    loadNews();
+  </script>
+</body>
+</html>
