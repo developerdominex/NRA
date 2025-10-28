@@ -3,43 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fetch YouTube Channel Videos</title>
+  <title>Fetch All YouTube Channel Videos</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background: #f7f7f7; }
     button { padding: 10px 16px; font-size: 16px; }
-    textarea { width:100%; height: 300px; margin-top: 20px; font-family: monospace; }
+    textarea { width:100%; height: 400px; margin-top: 20px; font-family: monospace; }
   </style>
 </head>
 <body>
-  <h1>Fetch Videos from Luu Myat Kyaw Channel</h1>
-  <p>Click below to fetch all videos (title, URL, publish date in milliseconds) and output as JSON.</p>
+  <h1>Fetch All Videos from Luu Myat Kyaw Channel</h1>
+  <p>Click below to fetch <strong>all</strong> videos (title, URL, publish date in milliseconds) and output as JSON.</p>
   <button id="fetchBtn">Fetch Videos</button>
   <textarea id="output" readonly placeholder="Output JSON will appear here..."></textarea>
 
   <script>
-    const API_KEY = "AIzaSyAXfHr1nh9ZhtgGb_tb8SsYfABcWZAinVc"; // Your key
-    const CHANNEL_USERNAME = "@luumyatkyaw-myanmar"; // handle
+    const API_KEY = "AIzaSyAXfHr1nh9ZhtgGb_tb8SsYfABcWZAinVc"; // replace with your own
+    const CHANNEL_HANDLE = "@luumyatkyaw-myanmar"; // the @handle
 
-    const OUTPUT = document.getElementById("output");
-    const FETCH_BTN = document.getElementById("fetchBtn");
+    const output = document.getElementById("output");
+    const btn = document.getElementById("fetchBtn");
 
-    async function getChannelIdFromHandle(handle) {
-      const url = `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${handle.replace('@', '')}&key=${API_KEY}`;
-      const res = await fetch(url);
+    async function getUploadsPlaylistId(handle) {
+      const res = await fetch(
+        `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forHandle=${handle.replace("@","")}&key=${API_KEY}`
+      );
       const data = await res.json();
-      if (!data.items || !data.items[0]) throw new Error("Failed to resolve channel ID from handle");
-      return data.items[0].id;
+      if (!data.items || !data.items[0]) throw new Error("Failed to get uploads playlist ID");
+      return data.items[0].contentDetails.relatedPlaylists.uploads;
     }
 
-    async function fetchAllVideos(channelId) {
+    async function fetchAllVideos(playlistId) {
       let videos = [];
       let nextPageToken = "";
       do {
-        const url = new URL("https://www.googleapis.com/youtube/v3/search");
+        const url = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
         url.searchParams.set("key", API_KEY);
-        url.searchParams.set("channelId", channelId);
+        url.searchParams.set("playlistId", playlistId);
         url.searchParams.set("part", "snippet");
-        url.searchParams.set("order", "date");
         url.searchParams.set("maxResults", "50");
         if (nextPageToken) url.searchParams.set("pageToken", nextPageToken);
 
@@ -48,36 +48,36 @@
         if (data.error) throw new Error(data.error.message);
 
         for (const item of data.items || []) {
-          if (item.id.kind === "youtube#video") {
-            const published = item.snippet.publishedAt
-              ? new Date(item.snippet.publishedAt).getTime()
-              : null;
+          const snippet = item.snippet;
+          if (!snippet || !snippet.resourceId || snippet.resourceId.kind !== "youtube#video") continue;
 
-            videos.push({
-              title: item.snippet.title,
-              youtubeURL: "https://www.youtube.com/watch?v=" + item.id.videoId,
-              Date: published
-            });
-          }
+          videos.push({
+            title: snippet.title,
+            youtubeURL: "https://www.youtube.com/watch?v=" + snippet.resourceId.videoId,
+            Date: new Date(snippet.publishedAt).getTime()
+          });
         }
+
         nextPageToken = data.nextPageToken || "";
+        console.log("Fetched:", videos.length, "videos so far...");
       } while (nextPageToken);
+
       return videos;
     }
 
-    FETCH_BTN.addEventListener("click", async () => {
-      FETCH_BTN.disabled = true;
-      FETCH_BTN.textContent = "Fetching…";
-      OUTPUT.value = "";
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      btn.textContent = "Fetching…";
+      output.value = "";
       try {
-        const channelId = await getChannelIdFromHandle(CHANNEL_USERNAME);
-        const videos = await fetchAllVideos(channelId);
-        OUTPUT.value = JSON.stringify(videos, null, 2);
+        const playlistId = await getUploadsPlaylistId(CHANNEL_HANDLE);
+        const videos = await fetchAllVideos(playlistId);
+        output.value = JSON.stringify(videos, null, 2);
       } catch (err) {
-        OUTPUT.value = "Error: " + err.message;
+        output.value = "Error: " + err.message;
       }
-      FETCH_BTN.disabled = false;
-      FETCH_BTN.textContent = "Fetch Videos";
+      btn.disabled = false;
+      btn.textContent = "Fetch Videos";
     });
   </script>
 </body>
