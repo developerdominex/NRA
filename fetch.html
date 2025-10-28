@@ -12,66 +12,68 @@
 </head>
 <body>
   <h1>Fetch Videos from Luu Myat Kyaw Channel</h1>
-  <p>Click the button below to fetch all videos (title, URL, publish date) and output JSON.</p>
+  <p>Click below to fetch all videos (title, URL, publish date) and output as JSON.</p>
   <button id="fetchBtn">Fetch Videos</button>
   <textarea id="output" readonly placeholder="Output JSON will appear here..."></textarea>
 
   <script>
-    const API_KEY = 'AIzaSyAXfHr1nh9ZhtgGb_tb8SsYfABcWZAinVc';
-    const CHANNEL_ID = '@luumyatkyaw-Myanmar';  // channel id from YouTube
-    const OUTPUT = document.getElementById('output');
-    const FETCH_BTN = document.getElementById('fetchBtn');
+    const API_KEY = "AIzaSyAXfHr1nh9ZhtgGb_tb8SsYfABcWZAinVc"; // Replace with your key
+    const CHANNEL_USERNAME = "@luumyatkyaw-myanmar"; // handle (we’ll convert it)
 
-    async function fetchAllVideos() {
+    const OUTPUT = document.getElementById("output");
+    const FETCH_BTN = document.getElementById("fetchBtn");
+
+    async function getChannelIdFromHandle(handle) {
+      const url = `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${handle.replace('@', '')}&key=${API_KEY}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (!data.items || !data.items[0]) throw new Error("Failed to resolve channel ID from handle");
+      return data.items[0].id;
+    }
+
+    async function fetchAllVideos(channelId) {
       let videos = [];
-      let nextPageToken = '';
+      let nextPageToken = "";
       do {
-        const url = new URL('https://www.googleapis.com/youtube/v3/search');
-        url.searchParams.set('key', API_KEY);
-        url.searchParams.set('channelId', CHANNEL_ID);
-        url.searchParams.set('part', 'snippet');
-        url.searchParams.set('order', 'date');
-        url.searchParams.set('maxResults', '50');
-        if (nextPageToken) {
-          url.searchParams.set('pageToken', nextPageToken);
-        }
+        const url = new URL("https://www.googleapis.com/youtube/v3/search");
+        url.searchParams.set("key", API_KEY);
+        url.searchParams.set("channelId", channelId);
+        url.searchParams.set("part", "snippet");
+        url.searchParams.set("order", "date");
+        url.searchParams.set("maxResults", "50");
+        if (nextPageToken) url.searchParams.set("pageToken", nextPageToken);
 
-        const resp = await fetch(url.toString());
-        if (!resp.ok) {
-          throw new Error('YouTube API request failed: ' + resp.status);
-        }
+        const resp = await fetch(url);
         const data = await resp.json();
-        for (const item of data.items) {
-          if (item.id.kind === 'youtube#video') {
+        if (data.error) throw new Error(data.error.message);
+
+        for (const item of data.items || []) {
+          if (item.id.kind === "youtube#video") {
             videos.push({
               title: item.snippet.title,
-              youtubeURL: 'https://www.youtube.com/watch?v=' + item.id.videoId,
+              youtubeURL: "https://www.youtube.com/watch?v=" + item.id.videoId,
               Date: item.snippet.publishedAt
             });
           }
         }
-        nextPageToken = data.nextPageToken ? data.nextPageToken : '';
+        nextPageToken = data.nextPageToken || "";
       } while (nextPageToken);
-
       return videos;
     }
 
-    FETCH_BTN.addEventListener('click', async () => {
+    FETCH_BTN.addEventListener("click", async () => {
       FETCH_BTN.disabled = true;
-      FETCH_BTN.textContent = 'Fetching…';
+      FETCH_BTN.textContent = "Fetching…";
+      OUTPUT.value = "";
       try {
-        const videos = await fetchAllVideos();
-        const outputObj = videos.map(v => ({
-          title: v.title,
-          youtubeURL: v.youtubeURL,
-          Date: v.Date
-        }));
-        OUTPUT.value = JSON.stringify(outputObj, null, 2);
+        const channelId = await getChannelIdFromHandle(CHANNEL_USERNAME);
+        const videos = await fetchAllVideos(channelId);
+        OUTPUT.value = JSON.stringify(videos, null, 2);
       } catch (err) {
-        OUTPUT.value = 'Error: ' + err.message;
+        OUTPUT.value = "Error: " + err.message;
       }
       FETCH_BTN.disabled = false;
-      FETCH_BTN.textContent = 'Fetch Videos';
+      FETCH_BTN.textContent = "Fetch Videos";
     });
   </script>
 </body>
