@@ -148,25 +148,7 @@
     <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i>&nbsp;Back</button>
   </div>
 
-  <div class="profile-dialog" id="telegramDialog">
-    <div style="text-align:center;">
-      <i class="fab fa-telegram" style="font-size:2rem;color:#0088cc;margin-bottom:0.8rem;"></i>
-      <h3 style="margin:0 0 0.5rem;">Join on Telegram</h3>
-      <p style="color:#555;font-size:0.9rem;margin-bottom:1rem;">Copy the link below to join our Telegram channel:</p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;">
-        <input id="telegramLinkInput" value="https://t.me/lmk1980" readonly
-          style="padding:0.5rem 0.8rem;border-radius:6px;border:1px solid #ccc;font-size:0.9rem;width:70%;text-align:center;" />
-        <button id="copyTelegramBtn"
-          style="background:#007bff;border:none;color:#fff;padding:0.5rem 0.7rem;border-radius:6px;cursor:pointer;">
-          <i class="fas fa-copy"></i>
-        </button>
-      </div>
-      <button class="back-btn" id="closeTelegramDialog" style="margin-top:1.2rem;">
-        <i class="fas fa-times"></i>&nbsp;Close
-      </button>
-    </div>
-  </div>
-
+  
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const sidebar = document.getElementById('sidebar');
@@ -177,26 +159,17 @@
     const backBtn = document.getElementById('backBtn');
     const newsContainer = document.getElementById('newsContainer');
     const telegramLink = document.getElementById('telegramLink');
-    const telegramDialog = document.getElementById('telegramDialog');
-    const closeTelegramDialog = document.getElementById('closeTelegramDialog');
-    const copyTelegramBtn = document.getElementById('copyTelegramBtn');
-    const telegramLinkInput = document.getElementById('telegramLinkInput');
+    
 
     telegramLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      sidebar.classList.remove('active');
-      overlay.classList.remove('active');
-      telegramDialog.classList.add('active');
-    });
+  e.preventDefault();
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+  window.location.href = 'telegram_channel.html';
+});
 
-    closeTelegramDialog.addEventListener('click', () => telegramDialog.classList.remove('active'));
 
-    copyTelegramBtn.addEventListener('click', () => {
-      telegramLinkInput.select();
-      document.execCommand('copy');
-      copyTelegramBtn.innerHTML = '<i class="fas fa-check"></i>';
-      setTimeout(() => copyTelegramBtn.innerHTML = '<i class="fas fa-copy"></i>', 1500);
-    });
+    
 
     menuBtn.addEventListener('click', () => {
       sidebar.classList.add('active');
