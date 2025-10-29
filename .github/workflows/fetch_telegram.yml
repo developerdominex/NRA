@@ -1,4 +1,4 @@
-name: Fetch Telegram Channel Posts
+name: Fetch Telegram Posts
 
 on:
   schedule:
@@ -8,22 +8,19 @@ on:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 22
 
       - name: Install dependencies
         run: npm install telegram fs-extra
 
-      - name: Fetch Telegram posts
+      - name: Run fetch_telegram.js
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
           TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
@@ -31,10 +28,10 @@ jobs:
           TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
         run: node fetch_telegram.js
 
-      - name: Commit and push updates
+      - name: Commit and push updated JSON files
         run: |
           git config user.name "GitHub Action"
           git config user.email "actions@github.com"
-          git add telegram_posts.json
-          git commit -m "Auto update Telegram posts [skip ci]" || echo "No changes to commit"
+          git add telegram_posts_*.json || echo "No JSON files found."
+          git commit -m "🔄 Update Telegram posts" || echo "No changes to commit."
           git push
