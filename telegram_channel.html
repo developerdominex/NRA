@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Luu Myat Kyaw Telegram Channel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+body{font-family:Inter,sans-serif;background:#f3f4f6;margin:0;color:#111;}
+header{display:flex;align-items:center;gap:.6rem;padding:1rem;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+h1{flex:1;font-size:1.3rem;margin:0;display:flex;align-items:center;gap:.4rem;}
+h1 i{color:#0f62fe;}
+main{max-width:680px;margin:1rem auto;padding:0 1rem;}
+.post{background:#fff;border-radius:1rem;padding:1rem;margin-bottom:1.2rem;box-shadow:0 3px 8px rgba(0,0,0,0.05);}
+.date{font-size:.85rem;color:#777;margin-bottom:.5rem;}
+img.media,video.media{width:100%;border-radius:.8rem;margin-top:.6rem;}
+</style>
+</head>
+<body>
+<header>
+  <div class="avatar"><img src="assets/lmk.png" alt="Luu Myat Kyaw"></div>
+  <h1>Luu Myat Kyaw <i class="fa-solid fa-circle-check"></i></h1>
+</header>
+<main id="posts"></main>
+<script>
+async function loadPosts(){
+  try{
+    const res=await fetch("telegram_posts.json");
+    const posts=await res.json();
+    const c=document.getElementById("posts");
+    posts.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    c.innerHTML=posts.map(p=>`
+      <div class="post">
+        <div class="date">${new Date(p.date).toLocaleString()}</div>
+        <div>${p.text? p.text.replace(/\n/g,"<br>") : ""}</div>
+        ${p.photo? `<a href="${p.photo}" target="_blank"><img class="media" src="${p.photo}" alt="photo"></a>` : ""}
+      </div>
+    `).join("");
+  }catch(e){
+    document.getElementById("posts").innerHTML="<p>Unable to load Telegram posts.</p>";
+  }
+}
+loadPosts();
+</script>
+</body>
+</html>
