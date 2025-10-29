@@ -1,83 +1,89 @@
 import { TelegramClient } from "telegram";
 import { StringSession } from "telegram/sessions/index.js";
 import fs from "fs-extra";
+import path from "path";
 
 const apiId = Number(process.env.TELEGRAM_API_ID);
 const apiHash = process.env.TELEGRAM_API_HASH;
 const stringSession = new StringSession(process.env.TELEGRAM_SESSION);
 const channelUsername = process.env.TELEGRAM_CHANNEL_USERNAME;
-
 const client = new TelegramClient(stringSession, apiId, apiHash, { connectionRetries: 5 });
 
-const MESSAGES_PER_FILE = 500;
-const MAX_FILES = 20; // optional limit for safety
+const OUTPUT_PREFIX = "telegram_posts";
+const MAX_PER_FILE = 500;
 
 async function main() {
   console.log("🔄 Fetching Telegram posts...");
   await client.connect();
-
   const channel = await client.getEntity(channelUsername);
 
-  let allMessages = [];
-  let offsetId = 0;
-  let fileIndex = 1;
+  console.log("📥 Fetching messages...");
+  const messages = await client.getMessages(channel, { limit: 5000 }); 
+  const newPosts = messages
+    .filter(m => m.message || m.media)
+    .map(m => ({
+      id: m.id,
+      date: m.date,
+      text: m.message || "",
+      media: extractMedia(m),
+    }));
 
-  // Keep fetching until no messages or size limit reached
-  while (true) {
-    const messages = await client.getMessages(channel, { limit: 100, addOffset: 0, offsetId });
-    if (!messages.length) break;
+  // 🧩 Load old data
+  const existing = loadExistingPosts();
+  const existingIds = new Set(existing.map(p => p.id));
 
-    const formatted = messages
-      .filter((m) => m.message || m.media)
-      .map((m) => ({
-        id: m.id,
-        date: m.date,
-        text: m.message || "",
-        media: extractMedia(m),
-      }));
+  // Filter out duplicates
+  const merged = [...existing, ...newPosts.filter(p => !existingIds.has(p.id))];
 
-    allMessages.push(...formatted);
+  // Sort newest first
+  merged.sort((a, b) => b.date - a.date);
 
-    if (allMessages.length >= MESSAGES_PER_FILE) {
-      saveChunk(allMessages.splice(0, MESSAGES_PER_FILE), fileIndex++);
-      if (fileIndex > MAX_FILES) break;
-    }
+  // 💾 Split into multiple JSON files (max 500 per file)
+  splitAndSave(merged);
 
-    offsetId = messages[messages.length - 1].id;
-    console.log(`📦 Collected up to message ID: ${offsetId}`);
-  }
-
-  // Save remaining messages
-  if (allMessages.length) {
-    saveChunk(allMessages, fileIndex++);
-  }
-
+  console.log(`✅ Saved ${merged.length} unique posts (split into files).`);
   await client.disconnect();
-  console.log("✅ All done!");
-}
-
-function saveChunk(messages, index) {
-  const filename = `telegram_posts_${index}.json`;
-  fs.writeFileSync(filename, JSON.stringify(messages, null, 2));
-  console.log(`💾 Saved ${messages.length} messages → ${filename}`);
 }
 
 function extractMedia(msg) {
   const media = [];
-  if (msg.media && msg.media.webpage && msg.media.webpage.url) {
+  if (msg.media?.webpage?.url) {
     media.push({ type: "link", url: msg.media.webpage.url });
   } else if (msg.photo) {
-    media.push({
-      type: "photo",
-      url: `https://t.me/${process.env.TELEGRAM_CHANNEL_USERNAME}/${msg.id}`,
-    });
+    media.push({ type: "photo", url: `https://t.me/${process.env.TELEGRAM_CHANNEL_USERNAME}/${msg.id}` });
   } else if (msg.video) {
-    media.push({
-      type: "video",
-      url: `https://t.me/${process.env.TELEGRAM_CHANNEL_USERNAME}/${msg.id}`,
-    });
+    media.push({ type: "video", url: `https://t.me/${process.env.TELEGRAM_CHANNEL_USERNAME}/${msg.id}` });
   }
   return media;
 }
 
-main().catch((err) => console.error("❌ Error:", err));
+function loadExistingPosts() {
+  const posts = [];
+  const files = fs.readdirSync(".").filter(f => f.startsWith(OUTPUT_PREFIX) && f.endsWith(".json"));
+  for (const f of files) {
+    try {
+      const data = JSON.parse(fs.readFileSync(f, "utf8"));
+      posts.push(...data);
+    } catch (err) {
+      console.warn(`⚠️ Skipping invalid file: ${f}`);
+    }
+  }
+  return posts;
+}
+
+function splitAndSave(allPosts) {
+  const totalChunks = Math.ceil(allPosts.length / MAX_PER_FILE);
+  for (let i = 0; i < totalChunks; i++) {
+    const chunk = allPosts.slice(i * MAX_PER_FILE, (i + 1) * MAX_PER_FILE);
+    const filename = `${OUTPUT_PREFIX}_${i + 1}.json`;
+    fs.writeFileSync(filename, JSON.stringify(chunk, null, 2));
+  }
+  // Cleanup old extra files (if fewer chunks now)
+  const files = fs.readdirSync(".").filter(f => f.startsWith(OUTPUT_PREFIX));
+  for (let i = totalChunks + 1; i <= files.length; i++) {
+    const f = `${OUTPUT_PREFIX}_${i}.json`;
+    if (fs.existsSync(f)) fs.unlinkSync(f);
+  }
+}
+
+main().catch(err => console.error("❌ Error:", err));
