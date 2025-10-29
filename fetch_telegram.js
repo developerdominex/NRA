@@ -1,62 +1,56 @@
-import fs from "fs";
 import { TelegramClient } from "telegram";
 import { StringSession } from "telegram/sessions/index.js";
-import "dotenv/config";
+import fs from "fs-extra";
 
 const apiId = Number(process.env.TELEGRAM_API_ID);
 const apiHash = process.env.TELEGRAM_API_HASH;
-const botToken = process.env.TELEGRAM_BOT_TOKEN;
-const channelUsername = process.env.TELEGRAM_CHANNEL_USERNAME || "lmk1980";
-const FILE_PATH = "./telegram_posts.json";
+const stringSession = new StringSession(process.env.TELEGRAM_SESSION);
+const channelUsername = process.env.TELEGRAM_CHANNEL_USERNAME;
+const outputPath = "./telegram_posts.json";
 
-async function fetchTelegramPosts() {
+const client = new TelegramClient(stringSession, apiId, apiHash, {
+  connectionRetries: 5,
+});
+
+async function main() {
   console.log("🔄 Fetching Telegram posts...");
-
-  const client = new TelegramClient(new StringSession(""), apiId, apiHash, {
-    connectionRetries: 5,
-  });
-
-  await client.start({ botAuthToken: botToken });
+  await client.connect();
 
   const channel = await client.getEntity(channelUsername);
-  const messages = await client.getMessages(channel, { limit: 50 });
+  const messages = await client.getMessages(channel, { limit: 100 });
 
   const posts = messages
     .filter((m) => m.message || m.media)
     .map((m) => ({
       id: m.id,
+      date: m.date,
       text: m.message || "",
-      date: m.date.toISOString(),
-      hasMedia: !!m.media,
+      media: extractMedia(m),
     }));
 
-  // Read existing posts if available
-  let existing = [];
-  if (fs.existsSync(FILE_PATH)) {
-    try {
-      existing = JSON.parse(fs.readFileSync(FILE_PATH, "utf8"));
-    } catch {
-      existing = [];
-    }
-  }
-
-  const existingIds = new Set(existing.map((p) => p.id));
-  const newPosts = posts.filter((p) => !existingIds.has(p.id));
-
-  if (newPosts.length > 0) {
-    const merged = [...posts, ...existing].sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-    fs.writeFileSync(FILE_PATH, JSON.stringify(merged, null, 2));
-    console.log(`✅ Added ${newPosts.length} new post(s). Total: ${merged.length}`);
-  } else {
-    console.log("✅ No new posts found.");
-  }
+  fs.writeFileSync(outputPath, JSON.stringify(posts, null, 2));
+  console.log(`✅ Saved ${posts.length} posts to ${outputPath}`);
 
   await client.disconnect();
 }
 
-fetchTelegramPosts().catch((err) => {
-  console.error("❌ Error:", err);
-  process.exit(1);
-});
+function extractMedia(msg) {
+  const media = [];
+  if (msg.media && msg.media.webpage && msg.media.webpage.url) {
+    media.push({ type: "link", url: msg.media.webpage.url });
+  } else if (msg.photo) {
+    const fileRef = msg.photo;
+    media.push({
+      type: "photo",
+      url: `https://t.me/${channelUsername}/${msg.id}`,
+    });
+  } else if (msg.video) {
+    media.push({
+      type: "video",
+      url: `https://t.me/${channelUsername}/${msg.id}`,
+    });
+  }
+  return media;
+}
+
+main().catch((err) => console.error("❌ Error:", err));
