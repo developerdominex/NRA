@@ -17,40 +17,60 @@ async function main() {
   await client.connect();
 
   const channel = await client.getEntity(channelUsername);
-  const messages = await client.getMessages(channel, { limit: 100 });
 
-  const posts = messages
-    .filter((m) => m.message || m.media)
-    .map((m) => ({
+  let offsetId = 0;
+  const limit = 100;
+  const allMessages = [];
+
+  // Fetch in batches
+  while (true) {
+    const messages = await client.getMessages(channel, { limit, addOffset: 0, offsetId });
+    if (!messages.length) break;
+    allMessages.push(...messages);
+    offsetId = messages[messages.length - 1].id;
+    if (messages.length < limit) break;
+  }
+
+  console.log(`📥 Retrieved ${allMessages.length} messages from ${channelUsername}`);
+
+  // Prepare post objects
+  const posts = [];
+  for (const m of allMessages) {
+    if (!m.message && !m.media) continue;
+
+    const post = {
       id: m.id,
       date: m.date,
       text: m.message || "",
-      media: extractMedia(m),
-    }));
+      media: [],
+    };
+
+    // Extract media
+    if (m.media) {
+      try {
+        const fileInfo = await client.downloadMedia(m.media, {
+          workers: 1,
+          outputFile: false,
+        });
+        if (typeof fileInfo === "string" && fileInfo.startsWith("https://")) {
+          const type = m.photo ? "photo" : m.video ? "video" : "file";
+          post.media.push({ type, url: fileInfo });
+        }
+      } catch (err) {
+        console.warn(`⚠️ Failed to load media for message ${m.id}: ${err.message}`);
+      }
+    }
+
+    posts.push(post);
+  }
+
+  // Sort newest first
+  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   fs.writeFileSync(outputPath, JSON.stringify(posts, null, 2));
   console.log(`✅ Saved ${posts.length} posts to ${outputPath}`);
 
   await client.disconnect();
-}
-
-function extractMedia(msg) {
-  const media = [];
-  if (msg.media && msg.media.webpage && msg.media.webpage.url) {
-    media.push({ type: "link", url: msg.media.webpage.url });
-  } else if (msg.photo) {
-    const fileRef = msg.photo;
-    media.push({
-      type: "photo",
-      url: `https://t.me/${channelUsername}/${msg.id}`,
-    });
-  } else if (msg.video) {
-    media.push({
-      type: "video",
-      url: `https://t.me/${channelUsername}/${msg.id}`,
-    });
-  }
-  return media;
 }
 
 main().catch((err) => console.error("❌ Error:", err));
