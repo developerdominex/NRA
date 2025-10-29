@@ -75,9 +75,7 @@
       margin-bottom: 1.2rem;
       transition: transform 0.2s ease;
     }
-    .post:hover {
-      transform: translateY(-2px);
-    }
+    .post:hover { transform: translateY(-2px); }
 
     .post-date {
       font-size: 0.85rem;
@@ -127,27 +125,34 @@
   </main>
 
   <script>
-    // Back button
     document.getElementById("backBtn").addEventListener("click", () => {
       window.location.href = "home.html";
     });
 
-    // Load posts
     async function loadPosts() {
+      const container = document.getElementById("postsContainer");
       try {
-        const res = await fetch("telegram_posts.json");
-        const posts = await res.json();
-        const container = document.getElementById("postsContainer");
-        container.innerHTML = "";
+        const index = await (await fetch("telegram_index.json")).json();
+        let allPosts = [];
 
-        posts.forEach((p) => {
+        for (const file of index.files) {
+          const res = await fetch(file);
+          const posts = await res.json();
+          allPosts = allPosts.concat(posts);
+        }
+
+        // Sort newest first
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        container.innerHTML = "";
+        allPosts.forEach(p => {
           const html = `
             <div class="post">
               <div class="post-date">${new Date(p.date).toLocaleString()}</div>
               <div class="post-text">${p.text}</div>
               ${p.media.map(m =>
                 m.type === "photo"
-                  ? `<div class="media-placeholder"><img src="${m.url}" alt="photo" loading="lazy" onload="this.parentNode.remove()"></div><a href="${m.url}" target="_blank"><img src="${m.url}" alt="photo"></a>`
+                  ? `<a href="${m.url}" target="_blank"><img src="${m.url}" alt="photo" loading="lazy"></a>`
                   : m.type === "video"
                     ? `<a href="${m.url}" target="_blank"><video controls src="${m.url}" preload="metadata"></video></a>`
                     : `<a href="${m.url}" target="_blank">${m.url}</a>`
@@ -156,8 +161,7 @@
           container.insertAdjacentHTML("beforeend", html);
         });
       } catch (err) {
-        document.getElementById("postsContainer").innerHTML =
-          "<p style='text-align:center;color:red;'>❌ Failed to load posts.</p>";
+        container.innerHTML = "<p style='text-align:center;color:red;'>❌ Failed to load posts.</p>";
         console.error(err);
       }
     }
