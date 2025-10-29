@@ -2,8 +2,7 @@ name: Fetch Telegram Channel Posts
 
 on:
   schedule:
-    # Runs every 30 minutes
-    - cron: "*/30 * * * *"
+    - cron: "*/30 * * * *"  # every 30 minutes
   workflow_dispatch:
 
 jobs:
@@ -22,7 +21,7 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: npm install telegram fs-extra
+        run: npm install telegram fs-extra dotenv
 
       - name: Fetch Telegram Posts
         env:
