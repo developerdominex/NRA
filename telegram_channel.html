@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Telegram Channel – Luu Myat Kyaw</title>
+  <title>Luu Myat Kyaw – Telegram Channel</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
@@ -23,23 +23,27 @@
       top: 0;
       z-index: 10;
     }
-    .back-btn { font-size: 1.3rem; color: #333; cursor: pointer; }
+    .back-btn { font-size: 1.3rem; color: #333; cursor: pointer; transition: color .2s; }
+    .back-btn:hover { color: #007bff; }
     .profile { display: flex; align-items: center; gap: 0.8rem; }
     .profile img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
     .profile h2 { font-size: 1.1rem; margin: 0; display: flex; align-items: center; gap: 0.3rem; }
     .verified { color: #1d9bf0; }
-    main { max-width: 700px; margin: 1.5rem auto; padding: 0 1rem; }
-    .post {
-      background: #fff; border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      padding: 1rem; margin-bottom: 1.2rem;
-      transition: transform 0.2s ease;
+    main { max-width: 720px; margin: 1.5rem auto; padding: 0 1rem; }
+    .telegram-post { margin: 1rem auto; }
+    #loadMore {
+      display:block;
+      margin: 1.5rem auto;
+      background:#1d9bf0;
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      padding:0.6rem 1.2rem;
+      cursor:pointer;
+      font-weight:600;
+      transition: background .2s;
     }
-    .post:hover { transform: translateY(-2px); }
-    .post-date { font-size: 0.85rem; color: #666; margin-bottom: 0.5rem; }
-    .post-text { white-space: pre-line; font-size: 1rem; margin-bottom: 0.8rem; }
-    img, video { width: 100%; border-radius: 0.8rem; margin-top: 0.5rem; }
-    #loadMore { display:block; margin: 1rem auto; background:#1d9bf0; color:#fff; border:none; border-radius:8px; padding:0.6rem 1.2rem; cursor:pointer; }
+    #loadMore:hover { background:#0077e6; }
   </style>
 </head>
 <body>
@@ -55,49 +59,65 @@
     <p style="text-align:center;color:#555;">Loading posts...</p>
   </main>
 
-  <button id="loadMore">Load more posts</button>
+  <button id="loadMore">Load More</button>
 
+  <script async src="https://telegram.org/js/telegram-widget.js?22"></script>
   <script>
+    const channelUsername = "lmk1980"; 
+    let currentFile = 1;
+    let allPosts = [];
+    let postIndex = 0;
+
     document.getElementById("backBtn").addEventListener("click", () => {
       window.location.href = "home.html";
     });
-
-    let currentFile = 1;
-    const container = document.getElementById("postsContainer");
 
     async function loadNextFile() {
       try {
         const res = await fetch(`telegram_posts_${currentFile}.json`);
         if (!res.ok) {
           if (currentFile === 1)
-            container.innerHTML = "<p style='text-align:center;color:red;'>❌ No posts found.</p>";
+            document.getElementById("postsContainer").innerHTML =
+              "<p style='text-align:center;color:red;'>❌ No posts found.</p>";
           document.getElementById("loadMore").style.display = "none";
           return;
         }
+
         const posts = await res.json();
-        if (currentFile === 1) container.innerHTML = "";
-        posts.reverse().forEach(p => {
-          const html = `
-            <div class="post">
-              <div class="post-date">${new Date(p.date).toLocaleString()}</div>
-              <div class="post-text">${p.text}</div>
-              ${p.media.map(m =>
-                m.type === "photo"
-                  ? `<a href="${m.url}" target="_blank"><img src="${m.url}" alt="photo"></a>`
-                  : m.type === "video"
-                    ? `<a href="${m.url}" target="_blank"><video controls src="${m.url}"></video></a>`
-                    : `<a href="${m.url}" target="_blank">${m.url}</a>`
-              ).join("")}
-            </div>`;
-          container.insertAdjacentHTML("beforeend", html);
-        });
+        if (currentFile === 1) document.getElementById("postsContainer").innerHTML = "";
+        allPosts.push(...posts);
+        allPosts.sort((a, b) => b.id - a.id); // newest first
+        renderNextBatch();
         currentFile++;
       } catch (err) {
-        console.error("Error loading:", err);
+        console.error("⚠️ Error loading file:", err);
       }
     }
 
-    document.getElementById("loadMore").addEventListener("click", loadNextFile);
+    function renderNextBatch(count = 5) {
+      const container = document.getElementById("postsContainer");
+      const slice = allPosts.slice(postIndex, postIndex + count);
+
+      slice.forEach((p) => {
+        const html = `
+          <blockquote class="telegram-post"
+            data-telegram-post="${p.username}/${p.id}"
+            data-width="100%">
+          </blockquote>`;
+        container.insertAdjacentHTML("beforeend", html);
+      });
+
+      postIndex += count;
+      if (postIndex >= allPosts.length) {
+        loadNextFile(); // auto load next file if current exhausted
+      }
+
+      if (window.Telegram && window.Telegram.Widgets) {
+        window.Telegram.Widgets.load();
+      }
+    }
+
+    document.getElementById("loadMore").addEventListener("click", renderNextBatch);
     loadNextFile();
   </script>
 </body>
