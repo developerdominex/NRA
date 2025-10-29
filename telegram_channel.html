@@ -12,7 +12,6 @@
       background: #f4f6f8;
       color: #222;
     }
-
     header {
       background: #fff;
       padding: 1rem 1.4rem;
@@ -24,98 +23,30 @@
       top: 0;
       z-index: 10;
     }
-
-    .back-btn {
-      font-size: 1.3rem;
-      color: #333;
-      cursor: pointer;
-      transition: transform 0.2s ease, color 0.2s ease;
-    }
-    .back-btn:hover {
-      color: #007bff;
-      transform: translateX(-3px);
-    }
-
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .profile img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .profile h2 {
-      font-size: 1.1rem;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .verified {
-      color: #1d9bf0;
-    }
-
-    main {
-      max-width: 700px;
-      margin: 1.5rem auto;
-      padding: 0 1rem;
-    }
-
+    .back-btn { font-size: 1.3rem; color: #333; cursor: pointer; }
+    .profile { display: flex; align-items: center; gap: 0.8rem; }
+    .profile img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .profile h2 { font-size: 1.1rem; margin: 0; display: flex; align-items: center; gap: 0.3rem; }
+    .verified { color: #1d9bf0; }
+    main { max-width: 700px; margin: 1.5rem auto; padding: 0 1rem; }
     .post {
-      background: #fff;
-      border-radius: 1rem;
+      background: #fff; border-radius: 1rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      padding: 1rem;
-      margin-bottom: 1.2rem;
+      padding: 1rem; margin-bottom: 1.2rem;
       transition: transform 0.2s ease;
     }
     .post:hover { transform: translateY(-2px); }
-
-    .post-date {
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-
-    .post-text {
-      white-space: pre-line;
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .media-placeholder {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 400% 100%;
-      animation: shimmer 1.2s infinite;
-      border-radius: 0.8rem;
-      width: 100%;
-      height: 280px;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -400px 0; }
-      100% { background-position: 400px 0; }
-    }
-
-    img, video {
-      width: 100%;
-      border-radius: 0.8rem;
-      margin-top: 0.5rem;
-      display: block;
-    }
+    .post-date { font-size: 0.85rem; color: #666; margin-bottom: 0.5rem; }
+    .post-text { white-space: pre-line; font-size: 1rem; margin-bottom: 0.8rem; }
+    img, video { width: 100%; border-radius: 0.8rem; margin-top: 0.5rem; }
+    #loadMore { display:block; margin: 1rem auto; background:#1d9bf0; color:#fff; border:none; border-radius:8px; padding:0.6rem 1.2rem; cursor:pointer; }
   </style>
 </head>
 <body>
   <header>
     <i class="fas fa-arrow-left back-btn" id="backBtn" title="Back to Home"></i>
     <div class="profile">
-      <img src="assets/lmk.png" alt="Luu Myat Kyaw">
+      <img src="assets/lmk.png" alt="Luu Myat Kyaw" />
       <h2>Luu Myat Kyaw <i class="fas fa-check-circle verified"></i></h2>
     </div>
   </header>
@@ -124,49 +55,50 @@
     <p style="text-align:center;color:#555;">Loading posts...</p>
   </main>
 
+  <button id="loadMore">Load more posts</button>
+
   <script>
     document.getElementById("backBtn").addEventListener("click", () => {
       window.location.href = "home.html";
     });
 
-    async function loadPosts() {
-      const container = document.getElementById("postsContainer");
+    let currentFile = 1;
+    const container = document.getElementById("postsContainer");
+
+    async function loadNextFile() {
       try {
-        const index = await (await fetch("telegram_index.json")).json();
-        let allPosts = [];
-
-        for (const file of index.files) {
-          const res = await fetch(file);
-          const posts = await res.json();
-          allPosts = allPosts.concat(posts);
+        const res = await fetch(`telegram_posts_${currentFile}.json`);
+        if (!res.ok) {
+          if (currentFile === 1)
+            container.innerHTML = "<p style='text-align:center;color:red;'>❌ No posts found.</p>";
+          document.getElementById("loadMore").style.display = "none";
+          return;
         }
-
-        // Sort newest first
-        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        container.innerHTML = "";
-        allPosts.forEach(p => {
+        const posts = await res.json();
+        if (currentFile === 1) container.innerHTML = "";
+        posts.reverse().forEach(p => {
           const html = `
             <div class="post">
               <div class="post-date">${new Date(p.date).toLocaleString()}</div>
               <div class="post-text">${p.text}</div>
               ${p.media.map(m =>
                 m.type === "photo"
-                  ? `<a href="${m.url}" target="_blank"><img src="${m.url}" alt="photo" loading="lazy"></a>`
+                  ? `<a href="${m.url}" target="_blank"><img src="${m.url}" alt="photo"></a>`
                   : m.type === "video"
-                    ? `<a href="${m.url}" target="_blank"><video controls src="${m.url}" preload="metadata"></video></a>`
+                    ? `<a href="${m.url}" target="_blank"><video controls src="${m.url}"></video></a>`
                     : `<a href="${m.url}" target="_blank">${m.url}</a>`
               ).join("")}
             </div>`;
           container.insertAdjacentHTML("beforeend", html);
         });
+        currentFile++;
       } catch (err) {
-        container.innerHTML = "<p style='text-align:center;color:red;'>❌ Failed to load posts.</p>";
-        console.error(err);
+        console.error("Error loading:", err);
       }
     }
 
-    loadPosts();
+    document.getElementById("loadMore").addEventListener("click", loadNextFile);
+    loadNextFile();
   </script>
 </body>
 </html>
