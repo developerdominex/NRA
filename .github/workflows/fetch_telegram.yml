@@ -12,29 +12,29 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install dependencies
-        run: npm install telegram fs-extra dotenv input
+        run: npm install telegram fs-extra
 
-      - name: Fetch Telegram Posts
+      - name: Fetch Telegram posts
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
           TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
-          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
           TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+          TELEGRAM_CHANNEL_USERNAME: ${{ secrets.TELEGRAM_CHANNEL_USERNAME }}
         run: node fetch_telegram.js
 
-      - name: Commit & push changes
+      - name: Commit and push updates
         run: |
           git config user.name "GitHub Action"
           git config user.email "actions@github.com"
           git add telegram_posts.json
-          git commit -m "Auto update Telegram posts [skip ci]" || echo "No changes"
+          git commit -m "Auto update Telegram posts [skip ci]" || echo "No changes to commit"
           git push
